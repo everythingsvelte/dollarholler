@@ -26,7 +26,6 @@ module.exports = {
         fog: '#decaec',
       },
     }
-  }
-},
+  },
   plugins: []
 };
