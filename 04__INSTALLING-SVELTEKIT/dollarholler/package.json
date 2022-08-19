@@ -1,13 +1,13 @@
 {
 	"name": "dollarholler",
 	"version": "0.0.1",
+	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"package": "svelte-kit package",
 		"preview": "vite preview",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
@@ -26,7 +26,7 @@
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
-		"vite": "^3.0.0"
+		"vite": "^3.0.4"
 	},
 	"type": "module"
 }
