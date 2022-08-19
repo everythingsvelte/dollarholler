@@ -5,10 +5,6 @@
     "checkJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "$components": ["src/components"],
-      "$components/*": ["src/components/*"],
-    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,

@@ -2,14 +2,14 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    fontfamily: {
-      sansSerif: ['Source Sans Pro', 'sans-serif'],
-      mono: ['Source Code Pro', 'monospace'],
+    fontFamily: {
+      sansSerif: ['Source Sans Pro'],
+      mono: ['Source Code Pro'],
       handwriting: ['Kalam', 'cursive']
     },
     extend: {
       colors: {
-        lavenderIndigo: '#8657E1',
+        lavenderIndigo: '#8657e1',
         daisyBush: '#4714a5',
         goldenFizz: '#feff40',
         whisper: '#f9f4f9',
