@@ -3,6 +3,8 @@ module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     backgroundImage: {
+      arrowLeftUp: "url('/images/arrow-left-up.svg')",
+      arrowRightUp: "url('/images/arrow-right-up.svg')",
       circle: "url('/images/circle.svg')",
     },
     fontFamily: {
@@ -35,6 +37,7 @@ module.exports = {
         gallery: '#efeaf2',
         caribbeanGreen: '#00ca9e',
         fog: '#decaec',
+        prim: '#ede6ef'
       },
       gridTemplateColumns: {
         'invoiceTable': '100px 100px 60px 1fr 116px 32px 32px',
