@@ -1,0 +1,94 @@
+{
+  "invoices": [
+    {
+      "client": {
+        "id": "1",
+        "name": "Compressed.fm"
+      },
+      "dueDate": "2022-07-06",
+      "id": "1",
+      "invoiceNumber": 12345,
+      "invoiceStatus": "Draft",
+      "lineItems": [
+        {
+          "amount": 100,
+          "description": "Podcast Episode 1",
+          "id": "1",
+          "invoiceId": 12345,
+          "quantity": 1
+        },
+        {
+          "amount": 200,
+          "description": "Podcast Episode 2",
+          "id": "2",
+          "invoiceId": 12345,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "client": {
+        "id": "2",
+        "name": "Everything Svelte"
+      },
+      "dueDate": "2022-10-06",
+      "id": 2,
+      "invoiceNumber": 12346,
+      "invoiceStatus": "paid",
+      "lineItems": [
+        {
+          "amount": 1000,
+          "description": "Complete Tier",
+          "id": "3",
+          "invoiceId": 12346,
+          "quantity": 1
+        },
+        {
+          "amount": 5000,
+          "description": "Starter Tier",
+          "id": "4",
+          "invoiceId": 12346,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "client": {
+        "id": "3",
+        "name": "ZEAL"
+      },
+      "dueDate": "2022-6-06",
+      "id": "3",
+      "invoiceNumber": 12347,
+      "invoiceStatus": "sent",
+      "lineItems": [
+        {
+          "amount": 5000000,
+          "description": "Website",
+          "id": "4",
+          "invoiceId": 12347,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "client": {
+        "id": "3",
+        "name": "ZEAL"
+      },
+      "dueDate": "2022-10-06",
+      "id": "4",
+      "invoiceNumber": 12348,
+      "invoiceStatus": "sent",
+      "lineItems": [
+        {
+          "amount": 1000000,
+          "description": "Website",
+          "id": "1",
+          "invoiceId": 12348,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
