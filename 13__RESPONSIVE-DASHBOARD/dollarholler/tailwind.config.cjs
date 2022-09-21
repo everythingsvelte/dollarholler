@@ -26,8 +26,8 @@ module.exports = {
         fog: '#decaec',
       },
       zIndex: {
-        navBarToggle: '91',
-        navBar: '90'
+        navBarToggle: 91,
+        navBar: 90,
       }
     }
   },
