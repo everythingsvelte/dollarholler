@@ -3,18 +3,16 @@
 </script>
 
 <header class="col-span-3 bg-daisyBush text-center">
-  <div class="mt-10 mb-24">
-    <a href="/"><img src="/images/logo.svg" alt="The Dollar Holler" class="mx-auto" /></a>
+  <div>
+    <a href="/invoices"><img src="/images/logo.svg" alt="The Dollar Holler" class="mx-auto" /></a>
   </div>
 
   <nav>
-    <ul class="list-none font-sansSerif text-2xl font-bold">
-      <li>
-        <a class:active={$page.url.pathname === '/invoices'} href="/invoices">Invoices</a>
-      </li>
-      <li><a class:active={$page.url.pathname === '/clients'} href="/clients">Clients</a></li>
-      <li><a href="/invoices">Settings</a></li>
-      <li><a href="/invoices">Logout</a></li>
+    <ul class="list-none text-2xl font-bold">
+      <li><a href="/invoices" class:active={$page.url.pathname === '/invoices'}>Invoices</a></li>
+      <li><a href="/clients" class:active={$page.url.pathname === '/clients'}>Clients</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Logout</a></li>
     </ul>
   </nav>
 </header>
