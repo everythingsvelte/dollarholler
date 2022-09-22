@@ -1,9 +1,9 @@
-<script lang="ts">
-  import Search from '$lib/components/Search.svelte';
-  import View from '$lib/components/Icon/View.svelte';
-  import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
-  import Tag from '$lib/components/Tag.svelte';
+<script>
   import CircledAmount from '$lib/components/CircledAmount.svelte';
+  import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
+  import View from '$lib/components/Icon/View.svelte';
+  import Search from '$lib/components/Search.svelte';
+  import Tag from '$lib/components/Tag.svelte';
 </script>
 
 <svelte:head>
@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="mb-16 flex items-center justify-between">
-  <!-- search input -->
+  <!-- search field -->
   <Search />
 
   <!-- new invoice button -->
@@ -26,7 +26,7 @@
 <!-- list of invoices -->
 <div>
   <!-- header -->
-  <div class="table-header mb-3 grid grid-cols-invoiceTable gap-4 px-6 text-daisyBush">
+  <div class="table-header invoice-table text-daisyBush">
     <h3>Status</h3>
     <h3>Due Date</h3>
     <h3>ID</h3>
@@ -36,24 +36,26 @@
     <div />
   </div>
 
-  <!-- list of invoices -->
-  <div
-    class="mb-3 grid w-full grid-cols-invoiceTable items-center gap-4 rounded-lg bg-white px-6 py-6 shadow-tableRow"
-  >
+  <!-- invoices -->
+  <div class="invoice-table items-center rounded-lg bg-white py-6 shadow-tableRow">
     <div><Tag label="draft" /></div>
     <div class="text-lg">8/1/2022</div>
     <div class="text-lg">12345</div>
-    <div class="text-lg font-bold">Compressed.fm</div>
+    <div class="text-xl font-bold">Compressed.fm</div>
     <div class="font-mono text-lg font-bold">$504.00</div>
-    <div><a href="#" class="text-pastelPurple hover:text-daisyBush"><View /></a></div>
-    <div><button class="center text-pastelPurple hover:text-daisyBush"><ThreeDots /></button></div>
+    <div class="center text-lg">
+      <a href="#" class="text-pastelPurple hover:text-daisyBush"><View /></a>
+    </div>
+    <div class="center text-lg">
+      <button class=" text-pastelPurple hover:text-daisyBush"><ThreeDots /></button>
+    </div>
   </div>
-
-  <CircledAmount label="Total" amount="$1,144.00" />
 </div>
+
+<CircledAmount label="Total" amount="$1,144.00" />
 
 <style lang="postcss">
   .table-header h3 {
-    @apply font-sansSerif text-xl font-black leading-snug;
+    @apply text-xl font-black leading-snug;
   }
 </style>

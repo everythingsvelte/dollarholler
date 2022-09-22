@@ -2,17 +2,17 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    backgroundImage: {
-      circle: "url('/images/circle.svg')",
-    },
     fontFamily: {
       sansSerif: ['Source Sans Pro'],
       mono: ['Source Code Pro'],
       handwriting: ['Kalam', 'cursive']
     },
     extend: {
+      backgroundImage: {
+        circle: "url('/images/circle.svg')"
+      },
       borderWidth: {
-        1: '1px',
+        '1': '1px',
       },
       boxShadow: {
         colored: '0px 7px 16px rgba(127, 91, 220, 0.002)',
@@ -39,15 +39,9 @@ module.exports = {
       gridTemplateColumns: {
         'invoiceTable': '100px 100px 60px 1fr 116px 32px 32px'
       },
-      minHeight: {
-        24: '6rem',
-      },
-      minWidth: {
-        64: '16rem'
-      },
       zIndex: {
-        navBarToggle: '91',
-        navBar: '90'
+        navBarToggle: 91,
+        navBar: 90,
       }
     }
   },
