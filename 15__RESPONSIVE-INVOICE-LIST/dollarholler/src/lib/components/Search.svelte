@@ -5,10 +5,10 @@
 <div class="relative flex w-full items-baseline">
   <div class="mr-2 mt-auto text-pastelPurple"><Search /></div>
   <input
-    class="w-full border-b-2 border-dashed border-pastelPurple bg-transparent font-sansSerif text-base text-black outline-none md:w-[14rem] lg:w-72 lg:text-xl"
     type="text"
     name="search"
-    placeholder="Search by Keyword"
+    placeholder="Search by keyword"
+    class="w-full border-b-2 border-dashed border-b-pastelPurple bg-transparent font-sansSerif text-base text-black outline-none focus:border-solid focus:border-b-lavenderIndigo md:w-[14rem] lg:w-72 lg:text-xl"
   />
-  <button class="font-sansSerif font-black text-pastelPurple md:text-lg lg:text-xl">Search</button>
+  <button class="font-sansSerif text-lg font-black text-pastelPurple lg:text-xl">Search</button>
 </div>

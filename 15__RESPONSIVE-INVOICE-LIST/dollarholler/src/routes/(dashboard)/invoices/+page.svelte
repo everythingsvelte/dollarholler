@@ -1,9 +1,9 @@
-<script lang="ts">
-  import Search from '$lib/components/Search.svelte';
-  import View from '$lib/components/Icon/View.svelte';
-  import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
-  import Tag from '$lib/components/Tag.svelte';
+<script>
   import CircledAmount from '$lib/components/CircledAmount.svelte';
+  import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
+  import View from '$lib/components/Icon/View.svelte';
+  import Search from '$lib/components/Search.svelte';
+  import Tag from '$lib/components/Tag.svelte';
 </script>
 
 <svelte:head>
@@ -11,9 +11,9 @@
 </svelte:head>
 
 <div
-  class="mb-7 flex flex-col-reverse items-start justify-between gap-y-6 md:flex-row md:items-center lg:mb-16"
+  class="md:gap-7-4 mb-7 flex flex-col-reverse items-start justify-between gap-y-6 md:flex-row md:items-center lg:mb-16"
 >
-  <!-- search input -->
+  <!-- search field -->
   <Search />
 
   <!-- new invoice button -->
@@ -28,7 +28,7 @@
 <!-- list of invoices -->
 <div>
   <!-- header -->
-  <div class="table-header mb-3 hidden grid-cols-invoiceTable gap-4 px-6 text-daisyBush lg:grid">
+  <div class="table-header invoice-table hidden text-daisyBush lg:grid">
     <h3>Status</h3>
     <h3>Due Date</h3>
     <h3>ID</h3>
@@ -38,29 +38,29 @@
     <div />
   </div>
 
-  <!-- list of invoices -->
+  <!-- invoices -->
   <div
-    class="invoice-row mb-3 grid w-full grid-cols-invoiceTableMobile items-center gap-x-4 rounded-lg bg-white px-4 py-3 shadow-tableRow lg:grid-cols-invoiceTable lg:px-6 lg:py-6"
+    class="invoice-table invoice-row items-center rounded-lg bg-white py-3 shadow-tableRow lg:py-6"
   >
     <div class="status"><Tag className="ml-auto lg:ml-0" label="draft" /></div>
     <div class="dueDate text-sm lg:text-lg">8/1/2022</div>
     <div class="invoiceNumber text-sm lg:text-lg">12345</div>
-    <div class="clientName text-base font-bold lg:text-lg">Compressed.fm</div>
+    <div class="clientName text-base font-bold lg:text-xl">Compressed.fm</div>
     <div class="amount text-right font-mono text-sm font-bold lg:text-lg">$504.00</div>
-    <div class="viewButton hidden lg:block">
+    <div class="center viewButton hidden text-sm lg:block lg:text-lg">
       <a href="#" class="text-pastelPurple hover:text-daisyBush"><View /></a>
     </div>
-    <div class="moreButton hidden lg:block">
-      <button class="center text-pastelPurple hover:text-daisyBush"><ThreeDots /></button>
+    <div class="center moreButton hidden text-sm lg:block lg:text-lg">
+      <button class=" text-pastelPurple hover:text-daisyBush"><ThreeDots /></button>
     </div>
   </div>
-
-  <CircledAmount label="Total" amount="$1,144.00" />
 </div>
+
+<CircledAmount label="Total" amount="$1,144.00" />
 
 <style lang="postcss">
   .table-header h3 {
-    @apply font-sansSerif text-xl font-black leading-snug;
+    @apply text-xl font-black leading-snug;
   }
 
   .invoice-row {

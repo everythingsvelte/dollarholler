@@ -4,8 +4,8 @@
 </script>
 
 <div
-  class={`text-md w-20 rounded-full border-1 border-pastelPurple text-center font-sansSerif font-bold capitalize text-pastelPurple ${className}`}
-  class:outline={label === 'draft'}
+  class={`text-md w-20 rounded-full border-1 text-center font-bold capitalize ${className}`}
+  class:inverted={label === 'draft'}
   class:success={label === 'sent' || label === 'current'}
   class:alert={label === 'late'}
   class:archive={label === 'paid'}
@@ -14,7 +14,7 @@
 </div>
 
 <style lang="postcss">
-  .outline {
+  .inverted {
     @apply border-pastelPurple text-pastelPurple;
   }
 
