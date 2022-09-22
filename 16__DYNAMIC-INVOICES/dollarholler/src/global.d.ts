@@ -1,22 +1,31 @@
 interface Invoice {
-  dueDate: string,
-  id: string,
-  invoiceNumber: number,
-  client: Client,
-  lineItems?: LineItem[],
+  client: Client
+  createdAt: string
+  dueDate: string
+  id: string
+  invoiceNumber: string
   invoiceStatus: InvoiceStatus
-}
-
-interface Client {
-  id: string,
-  name: string,
+  issueDate: string
+  lineItems?: LineItem[]
+  notes?: string
+  subject?: string
+  terms?: string
 }
 
 interface LineItem {
-  id: string,
-  amount: number;
-  description: string;
-  quantity: number;
-  invoiceId: number;
+  amount: number
+  description: string
+  id: string
+  quantity: number
 }
 
+interface Client {
+  clientStatus: ClientStatus
+  city: string
+  email: string
+  id: string
+  name: string
+  state: string
+  street: string
+  zip: string
+}
