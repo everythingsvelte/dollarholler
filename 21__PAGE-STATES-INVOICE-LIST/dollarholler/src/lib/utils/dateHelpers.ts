@@ -2,7 +2,7 @@ import { isBefore } from 'date-fns';
 
 /**
  * This takes yyyy-mm-dd and returns m-d-yyyy
- * @parm {string} myDate
+ * @param {string} myDate
  * @returns {string} m-d-yyyy
  */
 export const convertDate = (myDate: string): string => {
