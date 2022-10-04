@@ -13,8 +13,8 @@
     @apply block font-sansSerif text-base font-bold text-monsoon;
   }
 
-  input[type="text"]:not(.search),
-  input[type="number"],
+  input[type="text"]:not(.search):not(.line-item),
+  input[type="number"]:not(.line-item),
   input[type="date"],
   input[type="password"],
   input[type="email"] {
@@ -31,8 +31,8 @@
 
   select:focus,
   textarea:focus,
-  input[type="text"]:not(.search):focus,
-  input[type="number"]:focus,
+  input[type="text"]:not(.search):not(.line-item):focus,
+  input[type="number"]:not(.line-item):focus,
   input[type="date"]:focus,
   input[type="password"]:focus,
   input[type="email"]:focus {
@@ -47,6 +47,10 @@
 @layer components {
   .invoice-table {
     @apply  grid grid-cols-invoiceTableMobile lg:grid-cols-invoiceTable gap-x-4 px-4 lg:px-6 mb-3 w-full
+  }
+
+  .invoice-line-item {
+    @apply grid grid-cols-invoiceLineItem gap-x-5;
   }
 
   .field {
