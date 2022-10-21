@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&family=Source+Code+Pro:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sansSerif
+  }
+
+  label {
+    @apply block font-sansSerif text-base font-bold text-monsoon;
+  }
+
+  input[type="text"]:not(.search):not(.line-item),
+  input[type="number"]:not(.line-item),
+  input[type="date"],
+  input[type="password"],
+  input[type="email"] {
+    @apply h-14 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base;
+  }
+
+  textarea {
+    @apply h-32 w-full rounded-lg border-2 border-silver p-4  font-sansSerif text-base;
+  }
+
+  select {
+    @apply border-silver border-2 rounded-lg h-14 w-full p-4 appearance-none bg-chevronDown bg-no-repeat bg-right-center
+  }
+
+  select:focus,
+  textarea:focus,
+  input[type="text"]:not(.search):not(.line-item):focus,
+  input[type="number"]:not(.line-item):focus,
+  input[type="date"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    @apply border-2 border-lavenderIndigo outline-none;
+  }
+
+  svg {
+    @apply fill-current
+  }
+}
+
+@layer components {
+  .invoice-table {
+    @apply  grid grid-cols-invoiceTableMobile lg:grid-cols-invoiceTable gap-x-4 px-4 lg:px-6 mb-3 w-full
+  }
+
+  .invoice-line-item {
+    @apply grid grid-cols-invoiceLineItem gap-x-5;
+  }
+
+  .field {
+    @apply mb-6;
+  }
+}
+
+@layer utilities {
+  .center {
+    @apply flex items-center justify-center
+  }
+}
