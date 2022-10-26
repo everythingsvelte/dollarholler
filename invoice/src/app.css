@@ -3,3 +3,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sansSerif;
+  }
+
+  svg {
+    @apply fill-current;
+  }
+}
+@layer components {
+  .invoice-table {
+    @apply mb-3 grid w-full grid-cols-invoiceTable gap-4 px-6;
+  }
+}
+
+@layer utilities {
+  .center {
+    @apply flex items-center justify-center;
+  }
+}
