@@ -6,22 +6,22 @@
 
 @layer base {
   body {
-    @apply font-sansSerif
+    @apply font-sansSerif;
   }
 
   svg {
-    @apply fill-current
+    @apply fill-current;
   }
 }
 
-@layer cmoponents {
+@layer components {
   .invoice-table {
-    @apply  grid grid-cols-invoiceTableMobile lg:grid-cols-invoiceTable gap-x-4 px-4 lg:px-6 mb-3 w-full
+    @apply mb-3 grid w-full grid-cols-invoiceTableMobile gap-x-4 px-4 lg:grid-cols-invoiceTable lg:px-6;
   }
 }
 
-@layer utilties {
+@layer utilities {
   .center {
-    @apply flex items-center justify-center
+    @apply flex items-center justify-center;
   }
 }

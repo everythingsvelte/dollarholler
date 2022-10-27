@@ -20,7 +20,7 @@ module.exports = {
         tableRow: '0px 0px 6px rgba(0,0,0,0.16)'
       },
       colors: {
-        lavendarIndigo: '#8657e1',
+        lavenderIndigo: '#8657e1',
         daisyBush: '#4714a5',
         goldenFizz: '#f3ff40',
         whisper: '#f9f4f9',
