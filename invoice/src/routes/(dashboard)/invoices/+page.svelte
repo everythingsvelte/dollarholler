@@ -1,58 +1,55 @@
 <script>
+  import { invoices, loadInvoices } from '$lib/stores/InvoiceStore';
+  import { onMount } from 'svelte';
   import CircledAmount from '$lib/components/CircledAmount.svelte';
-  import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
-  import View from '$lib/components/Icon/View.svelte';
   import Search from '$lib/components/Search.svelte';
-  import Tag from '$lib/components/Tag.svelte';
+  import InvoiceRow from './InvoiceRow.svelte';
+
+  onMount(() => {
+    loadInvoices();
+    console.log($invoices);
+  });
 </script>
 
 <svelte:head>
-  <title>Invoices | AgencyGA San Sebastian</title>
+  <title>Invoices | The Dollar Holler</title>
 </svelte:head>
-<div class="mb-16 flex items-center justify-between">
+
+<div
+  class="md:gap-7-4 mb-7 flex flex-col-reverse items-start justify-between gap-y-6 md:flex-row md:items-center lg:mb-16"
+>
   <!-- search field -->
   <Search />
+
   <!-- new invoice button -->
   <div>
     <button
-      class="relative translate-y-0 whitespace-nowrap rounded-lg bg-lavendarIndigo px-10 py-3 font-sansSerif text-xl font-black text-white shadow-colored transition-all hover:-translate-y-2 hover:shadow-coloredHover"
+      class="relative translate-y-0 whitespace-nowrap rounded-lg bg-lavenderIndigo px-5 py-2 font-sansSerif text-base font-black text-white shadow-colored transition-all hover:-translate-y-2 hover:shadow-coloredHover lg:px-10 lg:py-3 lg:text-xl"
       >+ Invoice</button
     >
   </div>
 </div>
+
 <!-- list of invoices -->
 <div>
   <!-- header -->
-  <div class="table-header invoice-table text-daisyBush">
+  <div class="table-header invoice-table hidden text-daisyBush lg:grid">
     <h3>Status</h3>
     <h3>Due Date</h3>
-    <h3>Id</h3>
+    <h3>ID</h3>
     <h3>Client</h3>
-    <h3>Ammount</h3>
+    <h3>Amount</h3>
     <div />
     <div />
   </div>
+
   <!-- invoices -->
-  <div class="invoice-table items-center rounded-lg bg-white py-6 shadow-tableRow ">
-    <div><Tag label="draft" /></div>
-    <div class="text-lg">26/10/2022</div>
-    <div class="text-lg">12345</div>
-    <div class="text-xl font-bold">Reformas Ondarreta</div>
-    <div class="font-mono text-lg font-bold">650€</div>
-    <div class="center text-lg">
-      <a href="#" class="text-pastelPurple hover:text-daisyBush">
-        <View />
-      </a>
-    </div>
-    <div class="text-lg">
-      <button class=" text-pastelPurple hover:text-daisyBush">
-        <ThreeDots />
-      </button>
-    </div>
-  </div>
+  {#each $invoices as invoice}
+    <InvoiceRow {invoice} />
+  {/each}
 </div>
 
-<CircledAmount label="Total" amount="1,500.00" />
+<CircledAmount label="Total" amount="$1,144.00" />
 
 <style lang="postcss">
   .table-header h3 {
