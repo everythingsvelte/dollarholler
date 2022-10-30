@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Cancel from './../../../lib/components/Icon/Cancel.svelte';
   import AdditionalOptions from '$lib/components/AdditionalOptions.svelte';
   import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
   import View from '$lib/components/Icon/View.svelte';
@@ -8,12 +9,19 @@
   import Send from '$lib/components/Icon/Send.svelte';
   import Trash from '$lib/components/Icon/Trash.svelte';
   import Edit from '$lib/components/Icon/Edit.svelte';
+  import Modal from '$lib/components/Modal.svelte';
+  import Button from '$lib/components/Button.svelte';
+  import { yearsToMonths } from 'date-fns';
+  import { deleteInvoice } from '$lib/stores/InvoiceStore';
 
   export let invoice: Invoice;
   let isAdditionalMenuShowing = false;
   let isOptionsDisabled = false;
+  let isModalShowing = false;
+
   const handleDelete = () => {
-    console.log('deleting');
+    isModalShowing = true;
+    isAdditionalMenuShowing = false;
   };
   const handleEdit = () => {
     console.log('editing');
@@ -71,6 +79,35 @@
     {/if}
   </div>
 </div>
+
+<Modal isVisible={isModalShowing} on:close={() => (isModalShowing = false)}>
+  <div class="flex h-full min-h-[175px] flex-col items-center justify-between gap-6">
+    <div class="text-center text-xl font-bold text-daisyBush">
+      Are you sure you want delete this invoice to
+      <span class="text-scarlet">{invoice.client.name}</span> for
+      <span class="text-scarlet">€{centsToEuros(sumLineItems(invoice.lineItems))}</span>?
+    </div>
+    <div class="flex gap-4">
+      <Button
+        isAnimated={false}
+        label="Cancel"
+        onClick={() => {
+          isModalShowing = false;
+        }}
+        style="secondary"
+      />
+      <Button
+        isAnimated={false}
+        label="Yes, Delete It!"
+        onClick={() => {
+          deleteInvoice(invoice);
+          isModalShowing = false;
+        }}
+        style="destructive"
+      />
+    </div>
+  </div>
+</Modal>
 
 <style lang="postcss">
   .invoice-row {
