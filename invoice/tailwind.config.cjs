@@ -11,7 +11,12 @@ module.exports = {
       backgroundImage: {
         arrowRightUp: "url('images/arrow-right-up.svg')",
         arrowLeftUp: "url('images/arrow-left-up.svg')",
+        chevronDown: "url('images/chevron--down.svg')",
         circle: "url('images/circle.svg')"
+      },
+
+      backgroundPosition: {
+        'right-center': '97% center'
       },
       borderWidth: {
         1: '1px'
@@ -19,6 +24,7 @@ module.exports = {
       boxShadow: {
         colored: '0px 7px 16px rgba(127,91,220,0,002)',
         coloredHover: '0px 16px 25px rgba(127,91,220,0.3)',
+        slidePanel: '-4px 0px 44px rgba(0,0,0,0.25',
         tableRow: '0px 0px 6px rgba(0,0,0,0.16)'
       },
       colors: {
@@ -45,7 +51,8 @@ module.exports = {
       },
       zIndex: {
         modal: 999,
-        overlay: 998,
+        slidePanel: 998,
+        overlay: 997,
         navBarToggle: 91,
         navBar: 90
       }

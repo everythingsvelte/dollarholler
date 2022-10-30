@@ -9,6 +9,36 @@
     @apply font-sansSerif;
   }
 
+  label {
+    @apply block font-sansSerif font-bold text-monsoon;
+  }
+
+  input[type='text']:not(.search),
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='date'] {
+    @apply h-14 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base;
+  }
+
+  select {
+    @apply h-14 w-full appearance-none rounded-lg border-2 border-silver bg-chevronDown bg-right-center bg-no-repeat p-4;
+  }
+
+  input[type='text']:not(.search):focus,
+  input[type='number']:focus,
+  input[type='email']:focus,
+  input[type='password']:focus,
+  input[type='date']:focus,
+  textarea:focus,
+  select:focus {
+    @apply border-2 border-lavenderIndigo outline-none;
+  }
+
+  textarea {
+    @apply h-32 w-full rounded-lg border-2 border-silver p-4 font-sansSerif text-base;
+  }
+
   svg {
     @apply fill-current;
   }
@@ -17,6 +47,10 @@
 @layer components {
   .invoice-table {
     @apply mb-3 grid w-full grid-cols-invoiceTableMobile gap-x-4 px-4 lg:grid-cols-invoiceTable lg:px-6;
+  }
+
+  .field {
+    @apply mb-6;
   }
 }
 
