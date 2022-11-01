@@ -18,7 +18,7 @@
 <Portal>
   <Overlay />
   <div
-    class="shadow-slidePanel fixed right-0 top-0 z-slidePanel h-screen w-3/4 bg-white py-20 px-32"
+    class="shadow-slidePanel fixed right-0 top-0 z-slidePanel h-screen w-3/4 overflow-y-scroll bg-white py-20 px-32"
   >
     <button
       class="absolute top-5 left-7 text-pastelPurple hover:text-daisyBush"

@@ -46,6 +46,7 @@ module.exports = {
         whisper: '#f9f4f9'
       },
       gridTemplateColumns: {
+        invoiceLineItem: '1fr 100px 100px 100px 65px',
         invoiceTable: '100px 100px 60px 1fr 116px 32px 32px',
         invoiceTableMobile: '1fr 90px'
       },

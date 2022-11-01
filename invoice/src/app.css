@@ -13,8 +13,8 @@
     @apply block font-sansSerif font-bold text-monsoon;
   }
 
-  input[type='text']:not(.search),
-  input[type='number'],
+  input[type='text']:not(.search):not(.line-item),
+  input[type='number']:not(.line-item),
   input[type='email'],
   input[type='password'],
   input[type='date'] {
@@ -25,8 +25,8 @@
     @apply h-14 w-full appearance-none rounded-lg border-2 border-silver bg-chevronDown bg-right-center bg-no-repeat p-4;
   }
 
-  input[type='text']:not(.search):focus,
-  input[type='number']:focus,
+  input[type='text']:not(.search):not(.line-item):focus,
+  input[type='number']:not(.line-item):focus,
   input[type='email']:focus,
   input[type='password']:focus,
   input[type='date']:focus,
@@ -51,6 +51,10 @@
 
   .field {
     @apply mb-6;
+  }
+
+  .invoice-line-item {
+    @apply grid grid-cols-invoiceLineItem gap-x-5;
   }
 }
 

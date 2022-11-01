@@ -2,7 +2,13 @@
   import type { SvelteComponent } from 'svelte';
   export let label: string;
   export let onClick: () => void;
-  export let style: 'primary' | 'secondary' | 'destructive' | 'outline' | 'textOnly' = 'primary';
+  export let style:
+    | 'primary'
+    | 'secondary'
+    | 'destructive'
+    | 'outline'
+    | 'textOnly'
+    | 'textOnlyDestructive' = 'primary';
   export let iconLeft: (new (...args: any[]) => SvelteComponent) | null = null;
   export let iconRight: (new (...args: any[]) => SvelteComponent) | null = null;
 
@@ -17,6 +23,7 @@
   class:destructive={style === 'destructive'}
   class:outline={style === 'outline'}
   class:textOnly={style === 'textOnly'}
+  class:textOnlyDestructive={style === 'textOnlyDestructive'}
   class:isAnimated
 >
   {#if iconLeft}
@@ -43,7 +50,10 @@
     @apply bg-scarlet text-goldenFizz;
   }
   .textOnly {
-    @apply bg-transparent px-0 text-scarlet underline hover:no-underline;
+    @apply bg-transparent px-0 text-lavenderIndigo underline hover:no-underline;
+  }
+  .textOnlyDestructive {
+    @apply bg-transparent px-0 text-scarlet no-underline hover:underline;
   }
   .outline {
     @apply border-daisyBush text-daisyBush hover:bg-daisyBush hover:text-white;
