@@ -56,6 +56,9 @@
   .invoice-line-item {
     @apply grid grid-cols-invoiceLineItem gap-x-5;
   }
+  .button {
+    @apply relative items-center  whitespace-nowrap rounded-lg  px-5 py-2 font-sansSerif text-base font-black lg:px-10 lg:py-3 lg:text-xl;
+  }
 }
 
 @layer utilities {
