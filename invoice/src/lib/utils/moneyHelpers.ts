@@ -9,6 +9,10 @@ export const centsToEuros = (cents: number): string => {
   return addThousandsSeparators(addDecimals);
 };
 
+export const eurosToCents = (euros: number): number => {
+  return euros * 100;
+};
+
 export const twoDecimals = (myNum: number): string => {
   return myNum.toFixed(2);
 };

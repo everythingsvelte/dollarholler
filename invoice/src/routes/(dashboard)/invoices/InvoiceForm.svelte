@@ -11,7 +11,7 @@
     amount: 0
   };
 
-  let lineItems: LineItem[] = [blankLineItem];
+  let lineItems: LineItem[] = [{ ...blankLineItem }];
 
   const AddLineItem = () => {
     lineItems = [...lineItems, { ...blankLineItem, id: uuidv4() }];
