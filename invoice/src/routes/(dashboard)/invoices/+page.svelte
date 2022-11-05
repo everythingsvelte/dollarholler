@@ -10,12 +10,14 @@
   import Button from '$lib/components/Button.svelte';
   import SlidePanel from '$lib/components/SlidePanel.svelte';
   import InvoiceForm from './InvoiceForm.svelte';
+  import supabase from '$lib/utils/supabase';
 
   let isInvoiceFormShowing: boolean = false;
 
-  onMount(() => {
+  onMount(async () => {
     loadInvoices();
-    console.log($invoices);
+    const { data, error } = await supabase.from('LineItem').select();
+    console.log(data);
   });
 </script>
 

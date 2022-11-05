@@ -34,6 +34,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@supabase/supabase-js": "^2.0.5",
     "date-fns": "^2.29.3",
     "uuid": "^9.0.0"
   }
