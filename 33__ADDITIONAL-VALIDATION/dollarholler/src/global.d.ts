@@ -29,15 +29,3 @@ interface Client {
   street: string
   zip: string
 }
-
-type IFormData = FormData
-
-interface IInvoiceForm {
-  data: IFormData;
-  existingClient?: string;
-  newClient?: string;
-  newClientEmail?: string;
-  missing?: boolean;
-  error?: boolean;
-  success?: boolean;
-}

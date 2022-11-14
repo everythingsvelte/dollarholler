@@ -39,14 +39,13 @@
 
 <h2 class="mb-7 font-sansSerif text-3xl font-bold text-daisyBush">Add an Invoice</h2>
 
-<form class="grid grid-cols-6 gap-x-5" method="POST">
+<form class="grid grid-cols-6 gap-x-5">
   <!-- client -->
   <div class="field col-span-4">
     {#if !isNewClient}
       <label for="client">Client</label>
       <div class="flex items-end gap-x-5">
         <select name="client" id="client">
-          <option />
           {#each $clients as client}
             <option value={client.id}>{client.name}</option>
           {/each}

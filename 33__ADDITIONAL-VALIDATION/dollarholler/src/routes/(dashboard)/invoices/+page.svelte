@@ -12,19 +12,10 @@
   import InvoiceForm from './InvoiceForm.svelte';
 
   let isInvoiceFormShowing: boolean = false;
-  export let form: IInvoiceForm | null = null;
 
   onMount(() => {
     loadInvoices();
-    console.log({ form });
-
-    if (form?.success) {
-      console.log('form is a success');
-    }
-
-    if (form?.error) {
-      console.error('🛑 FORM ERROR 😱');
-    }
+    console.log($invoices);
   });
 </script>
 
