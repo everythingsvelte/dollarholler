@@ -1,6 +1,7 @@
 interface Invoice {
   client: Client
   createdAt: string
+  discount?: number
   dueDate: string
   id: string
   invoiceNumber: string
@@ -20,12 +21,12 @@ interface LineItem {
 }
 
 interface Client {
-  clientStatus: ClientStatus
-  city: string
+  clientStatus?: ClientStatus
+  city?: string
   email: string
   id: string
   name: string
-  state: string
-  street: string
-  zip: string
+  state?: string
+  street?: string
+  zip?: string
 }

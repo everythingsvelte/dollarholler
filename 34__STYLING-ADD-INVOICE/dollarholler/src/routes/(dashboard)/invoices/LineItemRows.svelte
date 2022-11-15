@@ -6,7 +6,7 @@
   import { centsToDollars, sumLineItems, twoDecimals } from '$lib/utils/moneyHelpers';
 
   let subtotal: string = '0.00';
-  let discount: number;
+  export let discount: number = 0;
   let discountedAmount: string = '0.00';
   let total: string = '0.00';
 
@@ -20,7 +20,7 @@
     discountedAmount = centsToDollars(sumLineItems(lineItems) * (discount / 100));
   }
 
-  $: total = twoDecimals(parseInt(subtotal) - parseInt(discountedAmount));
+  $: total = twoDecimals(Number(subtotal) - Number(discountedAmount));
 </script>
 
 <div class="invoice-line-item border-b-2 border-daisyBush pb-2">
