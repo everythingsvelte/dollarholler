@@ -1,6 +1,9 @@
 <script lang="ts">
+  import Snackbar from '$lib/components/Snackbar.svelte';
   import Navbar from '$lib/components/Navbar.svelte';
 </script>
+
+<Snackbar />
 
 <div class="grid min-h-screen grid-cols-12 bg-whisper md:gap-x-16">
   <Navbar />

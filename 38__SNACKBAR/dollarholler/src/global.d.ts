@@ -30,3 +30,10 @@ interface Client {
   street?: string
   zip?: string
 }
+
+type NotificationType = "info" | "warning" | "success" | "error"
+interface Snackbar {
+  id: string
+  message: string
+  type: NotificationType
+}
