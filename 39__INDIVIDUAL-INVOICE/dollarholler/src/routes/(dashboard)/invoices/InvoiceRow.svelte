@@ -63,7 +63,7 @@
     ${centsToDollars(invoiceTotal(invoice.lineItems, invoice.discount))}
   </div>
   <div class="viewButton hidden items-center justify-center text-sm lg:flex lg:text-lg">
-    <a href="#" class="text-pastelPurple hover:text-daisyBush"><View /></a>
+    <a href={`/invoices/${invoice.id}`} class="text-pastelPurple hover:text-daisyBush"><View /></a>
   </div>
   <div class="moreButton relative hidden items-center justify-center text-sm lg:flex lg:text-lg">
     <button
