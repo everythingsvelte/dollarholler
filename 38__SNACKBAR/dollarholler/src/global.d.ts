@@ -31,7 +31,8 @@ interface Client {
   zip?: string
 }
 
-type NotificationType = "info" | "warning" | "success" | "error"
+type NotificationType = "success" | "error" | "info" | "warning";
+
 interface Snackbar {
   id: string
   message: string

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { fly, fade } from 'svelte/transition';
   import { flip } from 'svelte/animate';
+  import Portal from '$lib/components/Portal.svelte';
   import Cancel from './Icon/Cancel.svelte';
-  import Portal from './Portal.svelte';
   import SnackbarMessage from './SnackbarMessage.svelte';
   import { snackbar } from '$lib/stores/SnackbarStore';
 </script>
@@ -15,12 +15,16 @@
           class="mb-2 inline-block rounded-lg px-5 py-4 text-lg font-bold"
           class:info={content.type === 'info'}
           class:warning={content.type === 'warning'}
-          class:error={content.type === 'error'}
           class:success={content.type === 'success'}
+          class:error={content.type === 'error'}
         >
           <div class="flex gap-4">
             <SnackbarMessage message={content.message} />
-            <button on:click={() => snackbar.remove(content.id)}><Cancel /></button>
+            <button
+              on:click={() => {
+                snackbar.remove(content.id);
+              }}><Cancel /></button
+            >
           </div>
         </div>
       </div>
