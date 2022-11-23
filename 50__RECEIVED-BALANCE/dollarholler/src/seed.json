@@ -1,33 +1,161 @@
 {
   "clients": [
     {
-      "address": "123 Street",
       "city": "Somewhereville",
       "clientStatus": "active",
       "email": "compressed@example.com",
       "id": "1",
+      "invoices": [
+        {
+          "client": {
+            "name": "Compressed.fm"
+          },
+          "createdAt": "2022-07-01",
+          "discount": 10,
+          "dueDate": "2022-07-31",
+          "id": "1",
+          "invoiceNumber": "12345",
+          "invoiceStatus": "draft",
+          "issueDate": "2022-07-01",
+          "lineItems": [
+            {
+              "amount": 100,
+              "description": "Podcast Episode #1",
+              "id": "1",
+              "quantity": 1
+            },
+            {
+              "amount": 200,
+              "description": "Podcast Episode #2",
+              "id": "2",
+              "quantity": 1
+            }
+          ],
+          "notes": "**This** please.",
+          "subject": "Podcast Episodes",
+          "terms": "_Pay_ me."
+        },
+        {
+          "client": {
+            "name": "Compressed.fm"
+          },
+          "createdAt": "2022-07-01",
+          "discount": 0,
+          "dueDate": "2022-07-06",
+          "id": "2",
+          "invoiceNumber": "12352",
+          "invoiceStatus": "draft",
+          "issueDate": "2022-07-08",
+          "lineItems": [
+            {
+              "amount": 300,
+              "description": "Podcast Episode #1",
+              "id": "3",
+              "quantity": 1
+            },
+            {
+              "amount": 500,
+              "description": "Podcast Episode #2",
+              "id": "4",
+              "quantity": 1
+            }
+          ],
+          "subject": "Podcast Episodes"
+        }
+      ],
       "name": "Compressed.fm",
       "state": "TN",
+      "street": "123 Street",
       "zip": "12345"
     },
     {
-      "address": "456 Drive",
       "city": "Nowhere",
       "clientStatus": "archive",
       "email": "everythingsvelte@test.com",
       "id": "2",
+      "invoices": [
+        {
+          "client": {
+            "name": "Everything Svelte"
+          },
+          "createdAt": "2022-07-01",
+          "dueDate": "2022-10-06",
+          "id": "6",
+          "invoiceNumber": "12346",
+          "invoiceStatus": "paid",
+          "issueDate": "2022-07-01",
+          "lineItems": [
+            {
+              "amount": 1000,
+              "description": "Complete Tier",
+              "id": "5",
+              "quantity": 1
+            },
+            {
+              "amount": 5000,
+              "description": "Starter Tier",
+              "id": "6",
+              "quantity": 2
+            }
+          ],
+          "subject": "Course Material"
+        }
+      ],
       "name": "Everything Svelte",
       "state": "TN",
+      "street": "456 Drive",
       "zip": "67890"
     },
     {
-      "address": "789 Boulevard",
       "city": "Anywhere",
       "clientStatus": "active",
       "email": "zeal@test.com",
       "id": "3",
+      "invoices": [
+        {
+          "client": {
+            "name": "ZEAL"
+          },
+          "createdAt": "2022-07-06",
+          "dueDate": "2022-10-06",
+          "id": "5",
+          "invoiceNumber": "12348",
+          "invoiceStatus": "sent",
+          "issueDate": "2022-07-06",
+          "lineItems": [
+            {
+              "amount": 1000000,
+              "description": "Website Development",
+              "id": "1",
+              "quantity": 1
+            }
+          ],
+          "subject": "Website"
+        },
+        {
+          "client": {
+            "name": "ZEAL"
+          },
+          "createdAt": "2022-07-01",
+          "dueDate": "2022-06-06",
+          "id": "7",
+          "invoiceNumber": "12347",
+          "invoiceStatus": "sent",
+          "issueDate": "2022-07-01",
+          "lineItems": [
+            {
+              "amount": 5000000,
+              "description": "Website Design",
+              "id": "4",
+              "quantity": 1
+            }
+          ],
+          "subject": "Website"
+        }
+      ],
       "name": "ZEAL",
       "state": "TN",
+      "street": "789 Boulevard",
       "zip": "87654"
     }
   ],
@@ -80,6 +208,7 @@
         "zip": "12345"
       },
       "createdAt": "2022-07-01",
+      "discount": 0,
       "dueDate": "2022-07-06",
       "id": "2",
       "invoiceNumber": "12352",
