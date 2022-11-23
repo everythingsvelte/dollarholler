@@ -3,6 +3,7 @@
     {
       "address": "123 Street",
       "city": "Somewhereville",
+      "clientStatus": "active",
       "email": "compressed@example.com",
       "id": "1",
       "name": "Compressed.fm",
@@ -12,6 +13,7 @@
     {
       "address": "456 Drive",
       "city": "Nowhere",
+      "clientStatus": "archive",
       "email": "everythingsvelte@test.com",
       "id": "2",
       "name": "Everything Svelte",
@@ -21,6 +23,7 @@
     {
       "address": "789 Boulevard",
       "city": "Anywhere",
+      "clientStatus": "active",
       "email": "zeal@test.com",
       "id": "3",
       "name": "ZEAL",
