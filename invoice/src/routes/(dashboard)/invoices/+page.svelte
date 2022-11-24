@@ -71,6 +71,6 @@
       isInvoiceFormShowing = false;
     }}
   >
-    <InvoiceForm />
+    <InvoiceForm closePanel={() => (isInvoiceFormShowing = false)} />
   </SlidePanel>
 {/if}

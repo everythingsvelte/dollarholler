@@ -1,6 +1,6 @@
 import { isBefore, format } from 'date-fns';
 
-export const today = format(new Date(), 'dd/MM/yyyy');
+export const today = format(new Date(), 'dd-MM-yyyy');
 /**
  * This takes a date yyyy-mm-dd and returns d-m-yyyy
  *
