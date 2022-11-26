@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { addInvoice } from '$lib/stores/InvoiceStore';
   import { addClient, clients, loadClients } from '$lib/stores/ClientStore';
   import { slide } from 'svelte/transition';
   import { v4 as uuidv4 } from 'uuid';
@@ -9,6 +8,8 @@
   import { states } from '$lib/utils/states';
   import { onMount } from 'svelte';
   import { today } from '$lib/utils/dateHelpers';
+  import { addInvoice, updateInvoice } from '$lib/stores/InvoiceStore';
+  import ConfirmDelete from './ConfirmDelete.svelte';
 
   const blankLineItem = {
     id: uuidv4(),
@@ -18,22 +19,26 @@
   };
 
   let isNewClient: boolean = false;
-  let invoice: Invoice = {
+  export let invoice: Invoice = {
     client: {} as Client,
     lineItems: [{ ...blankLineItem }] as LineItem[]
   } as Invoice;
-
   let newClient: Partial<Client> = {};
 
+  export let formState: 'create' | 'edit' = 'create';
+
   export let closePanel: () => void = () => {};
+
+  let isModalShowing = false;
 
   const AddLineItem = () => {
     invoice.lineItems = [...(invoice.lineItems as []), { ...blankLineItem, id: uuidv4() }];
   };
 
-  const removeLineItem = (event: CustomEvent) => {
+  const RemoveLineItem = (event: CustomEvent) => {
     invoice.lineItems =
       invoice?.lineItems && invoice.lineItems.filter((item) => item.id !== event.detail);
+    console.log('remove line item');
   };
 
   const UpdateLineItem = () => {
@@ -41,11 +46,17 @@
   };
 
   const handleSubmit = () => {
-    if (newClient) {
+    if (isNewClient) {
       invoice.client = newClient as Client;
       addClient(newClient as Client);
     }
-    addInvoice(invoice);
+
+    if (formState === 'create') {
+      addInvoice(invoice);
+    } else {
+      updateInvoice(invoice);
+    }
+
     closePanel();
   };
 
@@ -54,9 +65,11 @@
   });
 </script>
 
-<h2 class="mb-7 font-sansSerif text-3xl font-bold text-daisyBush">Add an Invoice</h2>
+<h2 class="mb-7 font-sansSerif text-3xl font-bold text-daisyBush">
+  {#if formState === 'create'}Add{:else}Edit{/if} an Invoice
+</h2>
 
-<form class="col-span-6 grid gap-x-5" on:submit|preventDefault={handleSubmit}>
+<form class="grid grid-cols-6 gap-x-5" on:submit|preventDefault={handleSubmit}>
   <!-- client -->
   <div class="field col-span-4">
     {#if !isNewClient}
@@ -92,7 +105,7 @@
     {:else}
       <label for="NewClient">New Client</label>
       <div class="flex items-end gap-x-5">
-        <input type="text" name="NewClient" required={isNewClient} bind:value={newClient.name} />
+        <input type="text" name="newClient" required={isNewClient} bind:value={newClient.name} />
         <div class="text-base font-bold leading-[3.5rem] text-monsoon">or</div>
         <Button
           label="Existing Client"
@@ -113,7 +126,7 @@
     <input type="number" name="invoiceNumber" required bind:value={invoice.invoiceNumber} />
   </div>
 
-  <!-- new client info -->
+  <!-- new client -->
   {#if isNewClient}
     <div class="field col-span-6 grid gap-x-5" transition:slide>
       <div class="field col-span-6">
@@ -128,7 +141,7 @@
       </div>
 
       <div class="field col-span-6">
-        <label for="street">Street Address</label>
+        <label for="street">Street</label>
         <input type="text" name="street" id="street" bind:value={newClient.street} />
       </div>
 
@@ -178,7 +191,7 @@
       discount={invoice.discount}
       lineItems={invoice.lineItems}
       on:addLineItem={AddLineItem}
-      on:removeLineItem={removeLineItem}
+      on:removeLineItem={RemoveLineItem}
       on:updateLineItem={UpdateLineItem}
     />
   </div>
@@ -205,13 +218,17 @@
   <!-- buttons -->
   <div class="field col-span-2">
     <!-- only be visible if editing -->
-    <Button
-      style="textOnlyDestructive"
-      label="Delete"
-      isAnimated={false}
-      onClick={() => {}}
-      iconLeft={Trash}
-    />
+    {#if formState === 'edit'}
+      <Button
+        style="textOnlyDestructive"
+        label="Delete"
+        isAnimated={false}
+        onClick={() => {
+          isModalShowing = true;
+        }}
+        iconLeft={Trash}
+      />
+    {/if}
   </div>
   <div class="field col-span-4 flex justify-end gap-x-5">
     <Button
@@ -228,3 +245,12 @@
     >
   </div>
 </form>
+
+<ConfirmDelete
+  {invoice}
+  {isModalShowing}
+  on:close={() => {
+    isModalShowing = false;
+    closePanel();
+  }}
+/>
