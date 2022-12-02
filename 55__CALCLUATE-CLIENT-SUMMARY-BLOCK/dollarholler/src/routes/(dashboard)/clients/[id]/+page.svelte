@@ -11,8 +11,9 @@
   import SlidePanel from '$lib/components/SlidePanel.svelte';
   import Edit from '$lib/components/Icon/Edit.svelte';
   import ClientForm from '../ClientForm.svelte';
+  import { isLate } from '$lib/utils/dateHelpers';
 
-  export let data;
+  export let data: { client: Client };
   console.log({ data });
 
   let isClientFormShowing: boolean = false;
@@ -30,6 +31,36 @@
 
   const closePanel = () => {
     isClientFormShowing = false;
+  };
+
+  const getDraft = (): string => {
+    if (!data.client.invoices || data.client.invoices.length < 1) return '0.00';
+    const draftInvoices = data.client.invoices.filter(
+      (invoice) => invoice.invoiceStatus === 'draft'
+    );
+    return centsToDollars(sumInvoices(draftInvoices));
+  };
+
+  const getPaid = (): string => {
+    if (!data.client.invoices || data.client.invoices.length < 1) return '0.00';
+    const paidInvoices = data.client.invoices.filter((invoice) => invoice.invoiceStatus === 'paid');
+    return centsToDollars(sumInvoices(paidInvoices));
+  };
+
+  const getTotalOverdue = (): string => {
+    if (!data.client.invoices || data.client.invoices.length < 1) return '0.00';
+    const paidInvoices = data.client.invoices.filter(
+      (invoice) => invoice.invoiceStatus === 'sent' && isLate(invoice.dueDate)
+    );
+    return centsToDollars(sumInvoices(paidInvoices));
+  };
+
+  const getTotalOutstanding = (): string => {
+    if (!data.client.invoices || data.client.invoices.length < 1) return '0.00';
+    const paidInvoices = data.client.invoices.filter(
+      (invoice) => invoice.invoiceStatus === 'sent' && !isLate(invoice.dueDate)
+    );
+    return centsToDollars(sumInvoices(paidInvoices));
   };
 </script>
 
@@ -59,26 +90,26 @@
 </div>
 
 <div class="mb-7 flex w-full items-center justify-between">
-  <h1 class="font-sansSerif text-3xl font-bold text-daisyBush">Compressed.fm</h1>
+  <h1 class="font-sansSerif text-3xl font-bold text-daisyBush">{data.client.name}</h1>
   <Button label="Edit" isAnimated={false} style="textOnly" iconLeft={Edit} onClick={editClient} />
 </div>
 
 <div class="mb-10 grid grid-cols-1 gap-4 rounded-lg bg-gallery py-7 px-10 lg:grid-cols-4">
   <div class="summary-block">
     <div class="label">Total Overdue</div>
-    <div class="number"><sup>$</sup>300.00</div>
+    <div class="number"><sup>$</sup>{getTotalOverdue()}</div>
   </div>
   <div class="summary-block">
     <div class="label">Total Oustanding</div>
-    <div class="number"><sup>$</sup>300.00</div>
+    <div class="number"><sup>$</sup>{getTotalOutstanding()}</div>
   </div>
   <div class="summary-block">
     <div class="label">Total Draft</div>
-    <div class="number"><sup>$</sup>300.00</div>
+    <div class="number"><sup>$</sup>{getDraft()}</div>
   </div>
   <div class="summary-block">
     <div class="label">Total Paid</div>
-    <div class="number"><sup>$</sup>300.00</div>
+    <div class="number"><sup>$</sup>{getPaid()}</div>
   </div>
 </div>
 
