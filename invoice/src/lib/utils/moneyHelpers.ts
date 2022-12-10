@@ -3,10 +3,29 @@ export const sumLineItems = (lineItems: LineItem[] | undefined): number => {
   return lineItems.reduce((prevValue, curValue) => prevValue + curValue.amount, 0);
 };
 
+/*
+Takes the lineItems and discount and returns the total amount of the invoice.
+*@param lineItems - array of lineItems
+*@param discount - discount percentage
+*@returns {number}
+*/
+
+export const invoiceTotal = (
+  lineItems: LineItem[] | undefined,
+  discount: number | undefined
+): number => {
+  const lineItemsSum = sumLineItems(lineItems);
+  if (discount) {
+    const invoiceDiscount = lineItemsSum * (discount / 100);
+    return lineItemsSum - invoiceDiscount;
+  }
+  return lineItemsSum;
+};
+
 export const centsToEuros = (cents: number): string => {
   const euros = cents / 100;
   const addDecimals = twoDecimals(euros);
-  return addThousandsSeparators(addDecimals);
+  return addThousandsSeparator(addDecimals);
 };
 
 export const eurosToCents = (euros: number): number => {
@@ -17,7 +36,7 @@ export const twoDecimals = (myNum: number): string => {
   return myNum.toFixed(2);
 };
 
-export const addThousandsSeparators = (myNum: string): string => {
+export const addThousandsSeparator = (myNum: string): string => {
   return myNum.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 

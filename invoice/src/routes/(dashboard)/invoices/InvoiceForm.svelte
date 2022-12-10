@@ -10,56 +10,48 @@
   import { today } from '$lib/utils/dateHelpers';
   import { addInvoice, updateInvoice } from '$lib/stores/InvoiceStore';
   import ConfirmDelete from './ConfirmDelete.svelte';
-
   const blankLineItem = {
     id: uuidv4(),
     description: '',
     quantity: 0,
     amount: 0
   };
-
   let isNewClient: boolean = false;
   export let invoice: Invoice = {
     client: {} as Client,
     lineItems: [{ ...blankLineItem }] as LineItem[]
   } as Invoice;
   let newClient: Partial<Client> = {};
-
   export let formState: 'create' | 'edit' = 'create';
-
   export let closePanel: () => void = () => {};
-
   let isModalShowing = false;
-
+  const initialDiscount = invoice.discount || 0;
   const AddLineItem = () => {
     invoice.lineItems = [...(invoice.lineItems as []), { ...blankLineItem, id: uuidv4() }];
   };
-
   const RemoveLineItem = (event: CustomEvent) => {
     invoice.lineItems =
       invoice?.lineItems && invoice.lineItems.filter((item) => item.id !== event.detail);
     console.log('remove line item');
   };
-
   const UpdateLineItem = () => {
     invoice.lineItems = invoice.lineItems;
   };
-
   const handleSubmit = () => {
     if (isNewClient) {
       invoice.client = newClient as Client;
       addClient(newClient as Client);
     }
-
     if (formState === 'create') {
       addInvoice(invoice);
     } else {
       updateInvoice(invoice);
     }
-
     closePanel();
   };
-
+  const UpdateDiscount = (event: CustomEvent) => {
+    invoice.discount = event.detail.discount;
+  };
   onMount(() => {
     loadClients();
   });
@@ -68,7 +60,6 @@
 <h2 class="mb-7 font-sansSerif text-3xl font-bold text-daisyBush">
   {#if formState === 'create'}Add{:else}Edit{/if} an Invoice
 </h2>
-
 <form class="grid grid-cols-6 gap-x-5" on:submit|preventDefault={handleSubmit}>
   <!-- client -->
   <div class="field col-span-4">
@@ -119,13 +110,11 @@
       </div>
     {/if}
   </div>
-
   <!-- invoice id -->
   <div class="field col-span-2">
     <label for="invoiceNumber">Invoice ID</label>
     <input type="number" name="invoiceNumber" required bind:value={invoice.invoiceNumber} />
   </div>
-
   <!-- new client -->
   {#if isNewClient}
     <div class="field col-span-6 grid gap-x-5" transition:slide>
@@ -139,17 +128,14 @@
           bind:value={newClient.email}
         />
       </div>
-
       <div class="field col-span-6">
         <label for="street">Street</label>
         <input type="text" name="street" id="street" bind:value={newClient.street} />
       </div>
-
       <div class="field col-span-2">
         <label for="city">City</label>
         <input type="text" name="city" id="city" bind:value={newClient.city} />
       </div>
-
       <div class="field col-span-2">
         <label for="state">State</label>
         <select name="state" id="state" bind:value={newClient.state}>
@@ -159,32 +145,27 @@
           {/each}
         </select>
       </div>
-
       <div class="field col-span-2">
         <label for="zip">Zip</label>
         <input type="text" name="zip" id="zip" bind:value={newClient.zip} />
       </div>
     </div>
   {/if}
-
   <!-- due date -->
   <div class="field col-span-2">
     <label for="dueDate">Due Date</label>
     <input type="date" name="dueDate" min={today} required bind:value={invoice.dueDate} />
   </div>
-
   <!-- issue date -->
   <div class="field col-span-2 col-start-5">
     <label for="issueDate">Issue Date</label>
     <input type="date" name="issueDate" min={today} bind:value={invoice.issueDate} />
   </div>
-
   <!-- subject -->
   <div class="field col-span-6">
     <label for="subject">Subject</label>
     <input type="text" name="subject" bind:value={invoice.subject} />
   </div>
-
   <!-- line items -->
   <div class="field col-span-6">
     <LineItemRows
@@ -193,9 +174,9 @@
       on:addLineItem={AddLineItem}
       on:removeLineItem={RemoveLineItem}
       on:updateLineItem={UpdateLineItem}
+      on:updateDiscount={UpdateDiscount}
     />
   </div>
-
   <!-- notes -->
   <div class="field col-span-6">
     <label for="notes"
@@ -203,7 +184,6 @@
     >
     <textarea name="notes" id="notes" bind:value={invoice.notes} />
   </div>
-
   <!-- terms -->
   <div class="field col-span-6">
     <label for="terms"
@@ -214,7 +194,6 @@
       Formatting tips: <strong>*bold*</strong>, <em>_italics_</em>.
     </div>
   </div>
-
   <!-- buttons -->
   <div class="field col-span-2">
     <!-- only be visible if editing -->
@@ -245,7 +224,6 @@
     >
   </div>
 </form>
-
 <ConfirmDelete
   {invoice}
   {isModalShowing}

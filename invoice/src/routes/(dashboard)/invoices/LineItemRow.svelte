@@ -1,14 +1,14 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import Trash from '$lib/components/Icon/Trash.svelte';
-  import { twoDecimals, eurosToCents } from '$lib/utils/moneyHelpers';
+  import { twoDecimals, eurosToCents, centsToEuros } from '$lib/utils/moneyHelpers';
 
   export let lineItem: LineItem;
   export let canDelete: boolean = false;
   export let isRequired: boolean = false;
 
-  let unitPrice: string = twoDecimals(lineItem.amount / lineItem.quantity);
-  let amount: string = twoDecimals(lineItem.amount);
+  let unitPrice: string = centsToEuros(lineItem.amount / lineItem.quantity);
+  let amount: string = centsToEuros(lineItem.amount);
 
   $: {
     amount = twoDecimals(lineItem.quantity * Number(unitPrice));
@@ -39,7 +39,7 @@
       bind:value={unitPrice}
       on:blur={() => {
         unitPrice = twoDecimals(Number(unitPrice));
-        dispatch('updateLineItem', lineItem);
+        dispatch('updateLineItem');
       }}
       required={isRequired}
     />

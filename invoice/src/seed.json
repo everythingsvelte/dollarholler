@@ -41,6 +41,7 @@
         "zip": "12345"
       },
       "createdAt": "2022-07-01",
+      "discount": 10,
       "dueDate": "2022-07-31",
       "id": "1",
       "invoiceNumber": "12345",

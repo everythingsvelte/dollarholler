@@ -5,7 +5,7 @@
   import View from '$lib/components/Icon/View.svelte';
   import Tag from '$lib/components/Tag.svelte';
   import { convertDate, isLate } from '$lib/utils/dateHelpers';
-  import { centsToEuros, sumLineItems } from '$lib/utils/moneyHelpers';
+  import { centsToEuros, invoiceTotal, sumLineItems } from '$lib/utils/moneyHelpers';
   import Send from '$lib/components/Icon/Send.svelte';
   import Trash from '$lib/components/Icon/Trash.svelte';
   import Edit from '$lib/components/Icon/Edit.svelte';
@@ -61,7 +61,7 @@
     {invoice.client.name}
   </div>
   <div class="amount text-right font-mono text-sm font-bold lg:text-lg">
-    €{centsToEuros(sumLineItems(invoice.lineItems))}
+    €{centsToEuros(invoiceTotal(invoice.lineItems, invoice.discount))}
   </div>
   <div class="center viewButton hidden text-sm lg:flex lg:text-lg">
     <a href="#" class="text-pastelPurple hover:text-daisyBush"><View /></a>
