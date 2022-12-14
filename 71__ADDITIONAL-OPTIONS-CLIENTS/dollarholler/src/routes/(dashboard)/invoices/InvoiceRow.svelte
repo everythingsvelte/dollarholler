@@ -100,7 +100,7 @@
   </div>
 
   <!-- swipe to reveal -->
-  <div class="absolute inset-0 z-rowActions flex h-full w-full items-center justify-around">
+  <div class="swipe-revealed-actions">
     <button
       class="action-button"
       on:click={() => {
@@ -144,10 +144,6 @@
 {/if}
 
 <style lang="postcss">
-  .action-button {
-    @apply flex cursor-pointer flex-col items-center justify-center font-bold text-daisyBush;
-  }
-
   .invoice-row {
     grid-template-areas:
       'invoiceNumber invoiceNumber'

@@ -136,7 +136,7 @@ export const swipe: Action<HTMLElement, SwipeProps> = (node, params) => {
   }
 
   return {
-    update(newParams: SwipePops) {
+    update(newParams: SwipeProps) {
       if (newParams.triggerReset) {
         resetCard();
       }
