@@ -27,5 +27,4 @@ When you start working with the lesson code, inside each folder, run:
 
 ## Support
 
-For support, email [support@everythingsvelte.com](mailto:support@everythingsvelte.com)
-or join the [Learn Build Teach Discord server](https://learnbuildteach.com)
+For support, email [support@everythingsvelte.com](mailto:support@everythingsvelte.com).
