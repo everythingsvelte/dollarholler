@@ -1,16 +1,10 @@
 {
-  "name": "dollarholler",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
-    "format": "prettier --write --plugin-search-dir=. .",
-    "seedDb": "node ./seedDb.js"
+  "dependencies": {
+    "@supabase/supabase-js": "^2.1.3",
+    "@types/uuid": "^8.3.4",
+    "date-fns": "^2.29.3",
+    "svelte-markdown": "^0.2.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
@@ -33,12 +27,18 @@
     "typescript": "^4.7.4",
     "vite": "^3.0.4"
   },
+  "name": "dollarholler",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "dev": "vite dev",
+    "format": "prettier --write --plugin-search-dir=. .",
+    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
+    "preview": "vite preview",
+    "seedDb": "node ./seedDb.js"
+  },
   "type": "module",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.1.3",
-    "@types/uuid": "^8.3.4",
-    "date-fns": "^2.29.3",
-    "svelte-markdown": "^0.2.3",
-    "uuid": "^9.0.0"
-  }
+  "version": "0.0.1"
 }
