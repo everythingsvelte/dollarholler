@@ -63,6 +63,8 @@ module.exports = {
         overlay: 996,
         navBarToggle: 91,
         navBar: 90,
+        row: 5,
+        rowActions: 1
       }
     }
   },
