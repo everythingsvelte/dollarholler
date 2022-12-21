@@ -48,14 +48,14 @@
     invoice.lineItems = invoice.lineItems;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isNewClient) {
       invoice.client = newClient as Client;
       addClient(newClient as Client);
     }
 
     if (formState === 'create') {
-      addInvoice(invoice);
+      await addInvoice(invoice);
       snackbar.send({
         message: 'Your invoice was successfully created.',
         type: 'success'

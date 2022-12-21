@@ -94,10 +94,11 @@
     <div class="label">Bill To:</div>
     <p>
       <strong>{data.invoice.client.name}</strong><br />
-      {data.invoice.client.email}<br />
-      {data.invoice.client.street}<br />
-      {data.invoice.client.city}, {data.invoice.client.state}
-      {data.invoice.client.zip}
+      {#if data.invoice.client.email}{data.invoice.client.email}<br />{/if}
+      {#if data.invoice.client.street}{data.invoice.client.street}<br />{/if}
+      {#if data.invoice.client.city}{data.invoice.client.city},{/if}
+      {#if data.invoice.client.state}{data.invoice.client.state}{/if}
+      {#if data.invoice.client.zip}{data.invoice.client.zip}{/if}
     </p>
   </div>
 
