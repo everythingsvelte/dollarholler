@@ -74,9 +74,11 @@
     <div class="client-name truncate whitespace-nowrap text-base font-bold lg:text-xl">
       {client.name}
     </div>
-    <div class="received text-right font-mono text-sm font-bold lg:text-lg">$504.00</div>
-    <div class="balance text-right font-mono text-sm font-bold text-scarlet lg:text-lg">
-      $240.00
+    <div class="text-right font-mono text-sm font-bold lg:text-lg">
+      ${centsToDollars(receivedInvoices())}
+    </div>
+    <div class="text-right font-mono text-sm font-bold text-scarlet lg:text-lg">
+      ${centsToDollars(balanceInvoices())}
     </div>
     <div class="view relative hidden items-center justify-center lg:flex">
       <a href={`/clients/${client.id}`} class="text-pastelPurple hover:text-daisyBush"><View /></a>
