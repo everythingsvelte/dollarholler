@@ -1,3 +1,4 @@
+import { displayErrorMessage } from "$lib/utils/handleError";
 import supabase from "$lib/utils/supabase";
 import { writable } from "svelte/store";
 import { snackbar } from "./SnackbarStore";
@@ -16,27 +17,17 @@ export const loadInvoices = async () => {
   invoices.set(data as Invoice[])
 }
 
-const displayErrorMessage = (error: { code: string, details: string, hint: string, message: string }) => {
-  console.error(error);
-  snackbar.send({
-    message: error.message,
-    type: 'error',
-  })
-}
-
 export const addInvoice = async (invoiceToAdd: Invoice) => {
   const { lineItems, client, ...newInvoice } = invoiceToAdd;
 
-  // add the invoice
+  // add the invoice to Supabase
   const invoiceResults = await supabase
     .from('invoice')
-    .insert([
-      { ...newInvoice, clientId: client.id },
-    ])
-    .select();
+    .insert([{ ...newInvoice, clientId: client.id },])
+    .select()
 
   if (invoiceResults.error) {
-    displayErrorMessage(invoiceResults.error)
+    displayErrorMessage(invoiceResults.error as Error)
     return;
   }
 
@@ -45,22 +36,27 @@ export const addInvoice = async (invoiceToAdd: Invoice) => {
 
   // loop over all the line items and add the invoice ID
   if (lineItems && lineItems.length > 0) {
-    const newLineItems = lineItems.map((lineItem) => ({ ...lineItem, invoiceId }));
+    const newLineItems = lineItems.map((lineItem: LineItem) => ({ ...lineItem, invoiceId }));
 
-    // add the line items
+    // add the line items to Supabase
     const lineItemsResults = await supabase
       .from('lineItems')
       .insert(newLineItems)
-      .select();
 
     if (lineItemsResults.error) {
-      displayErrorMessage(lineItemsResults.error)
+      displayErrorMessage(lineItemsResults.error as Error)
       return;
     }
   }
 
   // update the store
   invoices.update((prev: Invoice[]) => [...prev, { ...invoiceToAdd, id: invoiceId }])
+
+  snackbar.send({
+    message: 'Your invoice was successfully created.',
+    type: 'success'
+  });
+
   return invoiceToAdd;
 }
 

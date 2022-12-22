@@ -56,10 +56,6 @@
 
     if (formState === 'create') {
       await addInvoice(invoice);
-      snackbar.send({
-        message: 'Your invoice was successfully created.',
-        type: 'success'
-      });
     } else {
       updateInvoice(invoice);
       snackbar.send({
