@@ -48,3 +48,10 @@ interface Snackbar {
   message: string
   type: NotificationType
 }
+
+interface Error {
+  code: string
+  details: string,
+  hint: string,
+  message: string
+}
