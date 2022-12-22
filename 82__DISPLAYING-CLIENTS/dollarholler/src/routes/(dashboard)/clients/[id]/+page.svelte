@@ -116,7 +116,7 @@
 <!-- list of invoices -->
 <div>
   <!-- invoices -->
-  {#if data.client.invoice === null || data?.client?.invoice === undefined}
+  {#if data.client.invoice === null || data.client.invoice === undefined}
     Loading...
   {:else if data.client.invoice.length <= 0}
     <BlankState />

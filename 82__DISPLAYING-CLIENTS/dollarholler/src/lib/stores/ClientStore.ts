@@ -7,10 +7,12 @@ export const loadClients = async () => {
   const { data, error } = await supabase
     .from('client')
     .select('*, invoice(id, invoiceStatus, lineItems(*))')
+
   if (error) {
-    console.error(error)
+    console.error(error);
     return;
   }
+
   clients.set(data as Client[]);
 }
 
@@ -29,10 +31,13 @@ export const getClientById = async (id: string) => {
     .from('client')
     .select('*, invoice(id, invoiceStatus, invoiceNumber, dueDate, client(id, name), lineItems(*))')
     .eq('id', id);
+
   if (error) {
     console.error(error);
     return;
   }
+
   if (data && data[0]) return data[0] as Client;
-  console.warn('cannot find client');
+
+  console.warn('cannot find a client');
 }
