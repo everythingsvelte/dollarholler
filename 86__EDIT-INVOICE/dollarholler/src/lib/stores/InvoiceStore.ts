@@ -34,20 +34,8 @@ export const addInvoice = async (invoiceToAdd: Invoice) => {
   // get the invoice ID
   const invoiceId = invoiceResults.data[0].id;
 
-  // loop over all the line items and add the invoice ID
-  if (lineItems && lineItems.length > 0) {
-    const newLineItems = lineItems.map((lineItem: LineItem) => ({ ...lineItem, invoiceId }));
-
-    // add the line items to Supabase
-    const lineItemsResults = await supabase
-      .from('lineItems')
-      .insert(newLineItems)
-
-    if (lineItemsResults.error) {
-      displayErrorMessage(lineItemsResults.error as Error)
-      return;
-    }
-  }
+  const isSuccessful = await addLineItems(lineItems, invoiceId);
+  if (!isSuccessful) return;
 
   // update the store
   invoices.update((prev: Invoice[]) => [...prev, { ...invoiceToAdd, id: invoiceId }])
@@ -60,8 +48,72 @@ export const addInvoice = async (invoiceToAdd: Invoice) => {
   return invoiceToAdd;
 }
 
-export const updateInvoice = (invoiceToUpdate: Invoice) => {
+const addLineItems = async (lineItems: LineItem[] | undefined, invoiceId: string): Promise<boolean> => {
+  let isSuccessful = true;
+
+  if (lineItems && lineItems.length > 0) {
+    const newLineItems = lineItems.map((lineItem: LineItem) => ({ ...lineItem, invoiceId }));
+
+    // add the line items to Supabase
+    const lineItemsResults = await supabase
+      .from('lineItems')
+      .insert(newLineItems)
+
+    if (lineItemsResults.error) {
+      displayErrorMessage(lineItemsResults.error as Error)
+      isSuccessful = false;
+    }
+  }
+  return isSuccessful;
+}
+
+const deleteLineItems = async (invoiceId: string): Promise<boolean> => {
+  let isSuccessful = true;
+
+  const { data, error } = await supabase
+    .from('lineItems')
+    .delete()
+    .eq('invoiceId', invoiceId)
+
+  if (error) {
+    displayErrorMessage(error as Error)
+    isSuccessful = false;
+  }
+
+  return isSuccessful;
+}
+
+export const updateInvoice = async (invoiceToUpdate: Invoice) => {
+  const { lineItems, client, ...updatedInvoice } = invoiceToUpdate;
+
+  // delete all the line items
+  let isSuccessful = await deleteLineItems(invoiceToUpdate.id);
+  if (!isSuccessful) return;
+
+  // add new line items
+  isSuccessful = await addLineItems(lineItems, invoiceToUpdate.id);
+  if (!isSuccessful) return;
+
+  // update the invoice within Supabase
+  const { data, error } = await supabase
+    .from('invoice')
+    .update({ ...updatedInvoice, clientId: client.id })
+    .eq('id', updatedInvoice.id)
+
+  if (error) {
+    displayErrorMessage(error as Error)
+    return;
+  }
+
+  // update the store
   invoices.update((prev: Invoice[]) => prev.map((cur: Invoice) => cur.id === invoiceToUpdate.id ? invoiceToUpdate : cur))
+
+  // display a success message
+  snackbar.send({
+    message: 'Your invoice was successfully updated.',
+    type: 'success'
+  });
+
   return invoiceToUpdate;
 }
 
