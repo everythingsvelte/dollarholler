@@ -25,7 +25,6 @@
   const handleDelete = () => {
     isModalShowing = true;
     isAdditionalMenuShowing = false;
-    console.log('deleting');
   };
 
   const handleEdit = () => {

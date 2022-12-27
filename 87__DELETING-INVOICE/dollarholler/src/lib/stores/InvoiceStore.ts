@@ -117,8 +117,30 @@ export const updateInvoice = async (invoiceToUpdate: Invoice) => {
   return invoiceToUpdate;
 }
 
-export const deleteInvoice = (invoiceToDelete: Invoice) => {
+export const deleteInvoice = async (invoiceToDelete: Invoice) => {
+  // delete all of our line items
+  const isSuccessful = await deleteLineItems(invoiceToDelete.id);
+  if (!isSuccessful) return;
+
+  // delete the invoice
+  const { data, error } = await supabase
+    .from('invoice')
+    .delete()
+    .eq('id', invoiceToDelete.id)
+  if (error) {
+    displayErrorMessage(error as Error)
+    return;
+  }
+
+  // update our store
   invoices.update((prev: Invoice[]) => prev.filter((cur: Invoice) => cur.id !== invoiceToDelete.id));
+
+  // display a success message
+  snackbar.send({
+    message: 'Your invoice was successfully deleted.',
+    type: 'success'
+  });
+
   return invoiceToDelete;
 }
 
