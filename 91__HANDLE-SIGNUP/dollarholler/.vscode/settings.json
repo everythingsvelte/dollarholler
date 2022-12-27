@@ -1,0 +1,17 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#4713a6",
+    "titleBar.activeBackground": "#fffd41",
+    "titleBar.activeForeground": "#4713a6"
+  },
+  "cSpell.words": [
+    "Anywhereville",
+    "Coolville",
+    "dollarholler",
+    "Nowhereville",
+    "Somewhereville",
+    "supabase",
+    "sveltejs",
+    "uuidv"
+  ]
+}
