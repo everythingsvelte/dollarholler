@@ -41,3 +41,10 @@ interface Settings {
   street: string;
   zip: string;
 }
+
+type NotificationType = 'success' | 'error' | 'info' | 'warning';
+interface Snackbar {
+  id: string;
+  message: string;
+  type: NotificationType;
+}
