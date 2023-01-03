@@ -10,33 +10,33 @@
   }
 
   label {
-    @apply block font-sansSerif font-bold text-monsoon;
+    @apply block font-sansSerif text-base font-bold text-monsoon;
   }
 
   input[type='text']:not(.search):not(.line-item),
   input[type='number']:not(.line-item),
-  input[type='email'],
+  input[type='date'],
   input[type='password'],
-  input[type='date'] {
-    @apply h-14 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base;
-  }
-
-  select {
-    @apply h-14 w-full appearance-none rounded-lg border-2 border-silver bg-chevronDown bg-right-center bg-no-repeat p-4;
-  }
-
-  input[type='text']:not(.search):not(.line-item):focus,
-  input[type='number']:not(.line-item):focus,
-  input[type='email']:focus,
-  input[type='password']:focus,
-  input[type='date']:focus,
-  textarea:focus,
-  select:focus {
-    @apply border-2 border-lavenderIndigo outline-none;
+  input[type='email'] {
+    @apply h-10 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base lg:h-14;
   }
 
   textarea {
-    @apply h-32 w-full rounded-lg border-2 border-silver p-4 font-sansSerif text-base;
+    @apply h-32 w-full rounded-lg border-2 border-silver p-4  font-sansSerif text-base;
+  }
+
+  select {
+    @apply h-10 w-full appearance-none rounded-lg border-2 border-silver bg-chevronDown bg-right-center bg-no-repeat px-4 lg:h-14 lg:p-4;
+  }
+
+  select:focus,
+  textarea:focus,
+  input[type='text']:not(.search):not(.line-item):focus,
+  input[type='number']:not(.line-item):focus,
+  input[type='date']:focus,
+  input[type='password']:focus,
+  input[type='email']:focus {
+    @apply border-2 border-lavenderIndigo outline-none;
   }
 
   svg {
@@ -49,15 +49,46 @@
     @apply mb-3 grid w-full grid-cols-invoiceTableMobile gap-x-4 px-4 lg:grid-cols-invoiceTable lg:px-6;
   }
 
+  .invoice-line-item {
+    @apply relative grid gap-5 sm:grid-cols-invoiceLineItem;
+    grid-template-areas:
+      'description description description'
+      'unitPrice qty amount';
+  }
+
+  @media (min-width: 640px) {
+    .invoice-line-item {
+      grid-template-areas: 'description unitPrice qty amount trash';
+    }
+  }
+
+  .invoice-line-item .description {
+    grid-area: description;
+  }
+
+  .invoice-line-item .unitPrice {
+    grid-area: unitPrice;
+  }
+
+  .invoice-line-item .qty {
+    grid-area: qty;
+  }
+
+  .invoice-line-item .amount {
+    grid-area: amount;
+  }
+
+  .invoice-line-item .trash {
+    @apply absolute top-0 right-0 sm:relative;
+    grid-area: trash;
+  }
+
   .field {
     @apply mb-6;
   }
 
-  .invoice-line-item {
-    @apply grid grid-cols-invoiceLineItem gap-x-5;
-  }
   .button {
-    @apply relative items-center  whitespace-nowrap rounded-lg  px-5 py-2 font-sansSerif text-base font-black lg:px-10 lg:py-3 lg:text-xl;
+    @apply relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-black lg:px-10 lg:py-3 lg:text-xl;
   }
 }
 
