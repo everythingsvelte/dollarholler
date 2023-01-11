@@ -9,6 +9,7 @@
     | 'outline'
     | 'textOnly'
     | 'textOnlyDestructive' = 'primary';
+  export let height: 'short' | 'regular' = 'regular';
   export let iconLeft: (new (...args: any[]) => SvelteComponent) | null = null;
   export let iconRight: (new (...args: any[]) => SvelteComponent) | null = null;
 
@@ -24,6 +25,7 @@
   class:outline={style === 'outline'}
   class:textOnly={style === 'textOnly'}
   class:textOnlyDestructive={style === 'textOnlyDestructive'}
+  class:short={height === 'short'}
   class:isAnimated
 >
   {#if iconLeft}
@@ -61,5 +63,9 @@
   }
   .outline {
     @apply border-daisyBush text-daisyBush hover:bg-daisyBush hover:text-white;
+  }
+
+  .short {
+    @apply !py-1;
   }
 </style>

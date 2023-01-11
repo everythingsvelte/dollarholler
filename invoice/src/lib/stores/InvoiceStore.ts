@@ -25,3 +25,7 @@ export const deleteInvoice = (invoiceToDelete: Invoice) => {
   );
   return invoiceToDelete;
 };
+
+export const getInvoiceById = (id: string) => {
+  return data.invoices.find((invoice) => invoice.id === id);
+};
