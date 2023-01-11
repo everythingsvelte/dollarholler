@@ -1,5 +1,9 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
+  import { convertDate } from '$lib/utils/dateHelpers';
+  import LineItemRows from '../LineItemRows.svelte';
+
+  export let data: { invoice: Invoice };
 
   const printInvoice = () => {
     console.log('print invoice');
@@ -54,45 +58,54 @@
   <div class="col-span-3">
     <div class="label">Bill To:</div>
     <p>
-      <strong>AgencyGA</strong><br />
-      info@agencyga.com <br />
-      1234 Main Street <br />
-      San Francisco, CA 94111
+      <strong>{data.invoice.client.name}</strong><br />
+      {data.invoice.client.email} <br />
+      {data.invoice.client.street}<br />
+      {data.invoice.client.city},{data.invoice.client.state},{data.invoice.client.zip}
     </p>
   </div>
 
   <div class="col-span-2 col-start-5">
     <div class="label">Invoice ID</div>
-    <p>12348</p>
+    <p>{data.invoice.invoiceNumber}</p>
   </div>
 
   <div class="col-span-3">
     <div class="label">Due Date</div>
-    <p>22/02/2023</p>
+    <p>{convertDate(data.invoice.dueDate)}</p>
   </div>
 
   <div class="col-span-2 col-start-5">
     <div class="label">Issue Date</div>
-    <p>01/02/2023</p>
+    <p>{convertDate(data.invoice.issueDate)}</p>
   </div>
 
   <div class="col-span-6">
     <div class="label">Subject</div>
-    <p>Website</p>
+    <p>{data.invoice.subject}</p>
   </div>
 
   <div class="col-span-6">
-    <!-- line items -->
+    <LineItemRows
+      lineItems={data.invoice.lineItems}
+      isEditable={false}
+      discount={data?.invoice?.discount || 0}
+    />
   </div>
 
-  <div class="col-span-6">
-    <div class="label">Notes</div>
-    <p>Lorem Ipsum</p>
-  </div>
-  <div class="col-span-6">
-    <div class="label">Terms and Conditions</div>
-    <p>Lorem Ipsum</p>
-  </div>
+  {#if data.invoice.notes}
+    <div class="col-span-6">
+      <div class="label">Notes</div>
+      <p>{data.invoice.notes}</p>
+    </div>
+  {/if}
+
+  {#if data.invoice.terms}
+    <div class="col-span-6">
+      <div class="label">Terms and Conditions</div>
+      <p>{data.invoice.terms}</p>
+    </div>
+  {/if}
 </div>
 
 <style lang="postcss">

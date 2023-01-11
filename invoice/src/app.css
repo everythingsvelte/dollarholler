@@ -39,6 +39,11 @@
     @apply border-2 border-lavenderIndigo outline-none;
   }
 
+  input[type='number']:disabled {
+    @apply appearance-none;
+    -moz-appearance: textfield;
+  }
+
   svg {
     @apply fill-current;
   }

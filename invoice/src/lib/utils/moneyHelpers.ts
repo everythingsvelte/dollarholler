@@ -2,6 +2,15 @@ export const sumLineItems = (lineItems: LineItem[] | undefined): number => {
   if (!lineItems) return 0;
   return lineItems.reduce((prevValue, curValue) => prevValue + curValue.amount, 0);
 };
+/** Converting cents to euros, without commas
+ * @param {number} cents
+ * @returns {string}
+ * */
+
+export const centsToEurosWithoutCommas = (cents: number) => {
+  const euros = cents / 100;
+  return twoDecimals(euros);
+};
 
 /*
 Takes the lineItems and discount and returns the total amount of the invoice.

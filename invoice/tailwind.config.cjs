@@ -9,10 +9,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        arrowRightUp: "url('images/arrow-right-up.svg')",
-        arrowLeftUp: "url('images/arrow-left-up.svg')",
-        chevronDown: "url('images/chevron--down.svg')",
-        circle: "url('images/circle.svg')"
+        arrowRightUp: "url('/images/arrow-right-up.svg')",
+        arrowLeftUp: "url('/images/arrow-left-up.svg')",
+        chevronDown: "url('/images/chevron--down.svg')",
+        circle: "url('/images/circle.svg')"
       },
 
       backgroundPosition: {
