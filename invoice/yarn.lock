@@ -359,6 +359,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/marked@npm:^4.0.1":
+  version: 4.0.8
+  resolution: "@types/marked@npm:4.0.8"
+  checksum: 68278fa7acaa5d920cdc239d675b5daf842e0ad4779e4848cd617d9baf2ac1afccb5a264c331e37d80031d647e1640cb983cd31e73d45b28552670b4853fad8e
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 18.11.4
   resolution: "@types/node@npm:18.11.4"
@@ -2043,6 +2050,7 @@ __metadata:
     prettier-plugin-tailwindcss: ^0.1.13
     svelte: ^3.44.0
     svelte-check: ^2.7.1
+    svelte-markdown: ^0.2.3
     svelte-preprocess: ^4.10.7
     tailwindcss: ^3.2.1
     tslib: ^2.3.1
@@ -2271,6 +2279,15 @@ __metadata:
     socks-proxy-agent: ^7.0.0
     ssri: ^9.0.0
   checksum: 2332eb9a8ec96f1ffeeea56ccefabcb4193693597b132cd110734d50f2928842e22b84cfa1508e921b8385cdfd06dda9ad68645fed62b50fff629a580f5fb72c
+  languageName: node
+  linkType: hard
+
+"marked@npm:^4.0.10":
+  version: 4.2.5
+  resolution: "marked@npm:4.2.5"
+  bin:
+    marked: bin/marked.js
+  checksum: dd7da20a3983c66b516463fad5dc8d15dc70e137d20b6dc491e134f671e84bd2ed5f859e2c35f21e56830a122e4356b9e574bcde49b72b7ad6bc121a215a1a98
   languageName: node
   linkType: hard
 
@@ -3301,6 +3318,18 @@ __metadata:
   peerDependencies:
     svelte: ">=3.19.0"
   checksum: e15581769aa5a6f8e1eeaf3f47a34b579c76f5a72d2ae1ba32cca6ab71b73d721defde472f1d4b924f8ade0d5bb6a7a04aa1817c3b4705c45dffa2732df07a83
+  languageName: node
+  linkType: hard
+
+"svelte-markdown@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "svelte-markdown@npm:0.2.3"
+  dependencies:
+    "@types/marked": ^4.0.1
+    marked: ^4.0.10
+  peerDependencies:
+    svelte: ^3.0.0
+  checksum: 5eb7fd47bde01736a2801cfb3a56719e8b2b0a7378eb0b0ea7c05e35b289f96684aa69e5b9380b2d29c112015625d3566092e19bc0dfbdea48c80ebe72666b20
   languageName: node
   linkType: hard
 

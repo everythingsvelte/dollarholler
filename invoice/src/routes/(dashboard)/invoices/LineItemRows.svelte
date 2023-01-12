@@ -30,7 +30,7 @@
 
   $: {
     const plainSubtotal = subtotal.replace(',', '');
-    total = twoDecimals(Number(plainSubtotal) - Number(discountedAmount));
+    total = addThousandsSeparator(twoDecimals(Number(plainSubtotal) - Number(discountedAmount)));
   }
 </script>
 

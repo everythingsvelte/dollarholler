@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
+  export let className: string = '';
   export let label: string;
   export let onClick: () => void;
   export let style:
@@ -18,7 +19,7 @@
 
 <button
   on:click|preventDefault={() => onClick()}
-  class="button"
+  class={`button ${className}`}
   class:primary={style === 'primary'}
   class:secondary={style === 'secondary'}
   class:destructive={style === 'destructive'}

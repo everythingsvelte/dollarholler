@@ -182,5 +182,13 @@
       ],
       "subject": "Website"
     }
-  ]
+  ],
+  "settings": {
+    "myName": "Alessandro Giuzio",
+    "email": "ale@example.com",
+    "street": "Zaratuz 132",
+    "city": "Donostia",
+    "state": "Gipuzkoa",
+    "zip": "20018"
+  }
 }
