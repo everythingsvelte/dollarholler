@@ -36,7 +36,7 @@
 </script>
 
 <div
-  class="fixed z-0 mb-16 flex w-full max-w-screen-lg flex-col justify-between gap-y-5 px-4 md:flex-row lg:px-0"
+  class="fixed z-0 mb-16 flex w-full max-w-screen-lg flex-col justify-between gap-y-5 px-4 print:hidden md:flex-row lg:px-0"
 >
   <h1 class="text-3xl font-bold text-daisyBush">Invoice</h1>
   <div class="flex flex-wrap items-center gap-2 sm:flex-nowrap sm:gap-4">
@@ -60,16 +60,16 @@
 </div>
 
 <div
-  class="relative top-32 z-10 grid grid-cols-6 gap-x-5 gap-y-8 bg-white py-8 px-5 shadow-invoice md:py-16 md:px-32"
+  class="relative top-32 z-10 grid grid-cols-6 gap-x-5 gap-y-8 bg-white py-8 px-5 shadow-invoice print:top-0 print:py-0 print:shadow-none md:py-16 md:px-32"
 >
-  <div class="col-span-6 sm:col-span-3">
+  <div class="col-span-6 print:col-span-3 sm:col-span-3">
     <img
       src="/images/logoGA.png"
       srcset="/images/logoGA@2x.png 2x, /images/logoGA.png 1x"
       alt="Agency GA Logo"
     />
   </div>
-  <div class="col-span-6 pt-4 sm:col-span-2 sm:col-start-5">
+  <div class="col-span-6 pt-4 print:col-span-3 sm:col-span-2 sm:col-start-5">
     {#if $settings && $settings.myName}
       <div class="label">From</div>
       <p>
@@ -87,7 +87,7 @@
       </div>
     {/if}
   </div>
-  <div class="col-span-6 sm:col-span-3">
+  <div class="col-span-6 print:col-span-3 sm:col-span-3">
     <div class="label">Bill To:</div>
     <p>
       <strong>{data.invoice.client.name}</strong><br />

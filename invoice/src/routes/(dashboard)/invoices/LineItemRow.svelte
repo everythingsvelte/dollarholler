@@ -115,7 +115,7 @@
     @apply border-b-0 bg-transparent px-0;
   }
 
-  line-item-label {
-    @apply block sm:hidden;
+  .line-item-label {
+    @apply block print:hidden sm:hidden;
   }
 </style>
