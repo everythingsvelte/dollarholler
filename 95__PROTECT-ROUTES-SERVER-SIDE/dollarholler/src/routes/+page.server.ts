@@ -1,2 +1,5 @@
-import supabase from '$lib/utils/supabase'
-console.log(supabase);
+import { redirect } from "@sveltejs/kit"
+
+export const load = () => {
+  throw redirect(303, '/login')
+}

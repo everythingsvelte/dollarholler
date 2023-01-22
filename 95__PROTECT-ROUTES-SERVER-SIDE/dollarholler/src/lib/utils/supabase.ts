@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/auth-helpers-sveltekit'
 import { env } from '$env/dynamic/public'
 
 const supabaseUrl = env.PUBLIC_SUPABASE_URL
