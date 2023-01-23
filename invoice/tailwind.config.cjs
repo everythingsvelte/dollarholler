@@ -11,8 +11,10 @@ module.exports = {
       backgroundImage: {
         arrowRightUp: "url('/images/arrow-right-up.svg')",
         arrowLeftUp: "url('/images/arrow-left-up.svg')",
+        bg404: "url('/images/bg-error.svg')",
         chevronDown: "url('/images/chevron--down.svg')",
-        circle: "url('/images/circle.svg')"
+        circle: "url('/images/circle.svg')",
+        thankYou: "url('/images/bg-thankYou.svg')"
       },
 
       backgroundPosition: {
@@ -47,6 +49,8 @@ module.exports = {
         whisper: '#f9f4f9'
       },
       gridTemplateColumns: {
+        clientTable: '100px 1fr 125px 125px 32px 32px',
+        clientTableMobile: '1fr 90px',
         invoiceLineItem: '1fr 100px 100px 100px 65px',
         invoiceTable: '100px 100px 60px 1fr 116px 32px 32px',
         invoiceTableMobile: '1fr 90px'

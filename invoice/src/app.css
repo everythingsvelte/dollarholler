@@ -94,6 +94,10 @@
     grid-area: trash;
   }
 
+  .client-table {
+    @apply mb-3 grid w-full grid-cols-clientTableMobile gap-x-4 px-4 lg:grid-cols-clientTable lg:px-6;
+  }
+
   .field {
     @apply mb-6;
   }
