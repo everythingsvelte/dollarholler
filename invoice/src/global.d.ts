@@ -31,6 +31,7 @@ interface Client {
   state?: string;
   street?: string;
   zip?: string;
+  invoices?: Invoice[];
 }
 
 interface Settings {
