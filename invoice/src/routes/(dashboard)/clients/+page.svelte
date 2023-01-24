@@ -6,6 +6,7 @@
   import { clients, loadClients } from '$lib/stores/ClientStore';
   import { onMount } from 'svelte';
   import { states } from '$lib/utils/states';
+  import BlankState from './BlankState.svelte';
 
   onMount(() => {
     loadClients();
@@ -21,11 +22,11 @@
 >
   <!-- search field -->
 
-  <!-- {#if $invoices.length > 0} -->
-  <Search />
-  <!--  {:else}
+  {#if $clients.length > 0}
+    <Search />
+  {:else}
     <div />
-  {/if} -->
+  {/if}
 
   <!-- new invoice button -->
   <div>
@@ -44,7 +45,7 @@
   {#if $clients === null}
     Loading...
   {:else if $clients.length === 0}
-    Blank state
+    <BlankState />
   {:else}
     <!-- client header row -->
     <ClientRowHeader />
