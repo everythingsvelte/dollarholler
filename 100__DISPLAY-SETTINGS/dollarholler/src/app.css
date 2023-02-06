@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&family=Source+Code+Pro:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sansSerif
+  }
+
+  label {
+    @apply block font-sansSerif text-base font-bold text-monsoon;
+  }
+
+  input[type="text"]:not(.search):not(.line-item),
+  input[type="number"]:not(.line-item),
+  input[type="date"],
+  input[type="password"],
+  input[type="email"] {
+    @apply h-10 lg:h-14 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base;
+  }
+
+  textarea {
+    @apply h-32 w-full rounded-lg border-2 border-silver p-4  font-sansSerif text-base;
+  }
+
+  select {
+    @apply border-silver border-2 rounded-lg w-full px-4 lg:p-4 appearance-none bg-chevronDown bg-no-repeat bg-right-center h-10 lg:h-14
+  }
+
+  select:focus,
+  textarea:focus,
+  input[type="text"]:not(.search):not(.line-item):focus,
+  input[type="number"]:not(.line-item):focus,
+  input[type="date"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    @apply border-2 border-lavenderIndigo outline-none;
+  }
+
+  input[type=number]:disabled {
+    @apply appearance-none;
+    -moz-appearance: textfield;
+  }
+
+  svg {
+    @apply fill-current
+  }
+}
+
+@layer components {
+  .action-button {
+    @apply flex cursor-pointer flex-col items-center justify-center font-bold text-daisyBush;
+  }
+
+  .swipe-revealed-actions {
+    @apply absolute inset-0 z-rowActions flex h-full w-full items-center justify-around;
+  }
+
+  .invoice-table {
+    @apply  grid grid-cols-invoiceTableMobile lg:grid-cols-invoiceTable gap-x-4 px-4 lg:px-6 mb-3 w-full
+  }
+
+  .invoice-line-item {
+    @apply grid sm:grid-cols-invoiceLineItem gap-5 relative;
+    grid-template-areas: "description description description"
+      "unitPrice qty amount";
+  }
+
+  @media (min-width: 640px) {
+    .invoice-line-item {
+      grid-template-areas: "description unitPrice qty amount trash";
+    }
+  }
+
+  .invoice-line-item .description {
+    grid-area: description;
+  }
+
+  .invoice-line-item .unitPrice {
+    grid-area: unitPrice;
+  }
+
+  .invoice-line-item .qty {
+    grid-area: qty;
+  }
+
+  .invoice-line-item .amount {
+    grid-area: amount;
+  }
+
+  .invoice-line-item .trash {
+    @apply absolute top-0 right-0 sm:relative;;
+    grid-area: trash;
+  }
+
+  .client-table {
+    @apply grid grid-cols-clientTableMobile lg:grid-cols-clientTable mb-3 w-full gap-x-4 px-4 lg:px-6
+  }
+
+  .field {
+    @apply mb-6;
+  }
+
+  .button {
+    @apply relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-black lg:px-10 lg:py-3 lg:text-xl;
+  }
+
+  .auth-heading {
+    @apply mb-4 text-[2.5rem] font-black text-goldenFizz;
+  }
+
+  .auth-button {
+    @apply mt-6 min-h-[3.5rem] w-full rounded-lg bg-robinEggBlue py-3 px-4 text-xl font-bold text-daisyBush transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+  }
+}
+
+@layer utilities {
+  .center {
+    @apply flex items-center justify-center
+  }
+}
