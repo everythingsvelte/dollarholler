@@ -1,21 +1,42 @@
 <script lang="ts">
-  import { addClient } from '$lib/stores/ClientStore';
+  import { addClient, updateClient } from '$lib/stores/ClientStore';
   import Button from '$lib/components/Button.svelte';
   import Trash from '$lib/components/Icon/Trash.svelte';
   import Check from '$lib/components/Icon/Check.svelte';
   import { states } from '$lib/utils/states';
+  import { snackbar } from '$lib/stores/SnackbarStore';
 
   export let client: Client = {} as Client;
+  export let formStatus: 'create' | 'edit' = 'create';
 
   export let closePanel: () => void = () => {};
 
   const handleSubmit = () => {
-    addClient(client);
+    if (formStatus === 'create') {
+      addClient(client);
+      snackbar.send({
+        message: 'Client successfully created',
+        type: 'success'
+      });
+    } else {
+      updateClient(client);
+      snackbar.send({
+        message: 'Client successfully updated.',
+        type: 'success'
+      });
+    }
     closePanel();
   };
 </script>
 
-<h2 class="mb-7 font-sansSerif text-3xl font-bold text-daisyBush">Add a Client</h2>
+<h2 class="mb-7 font-sansSerif text-3xl font-bold text-daisyBush">
+  {#if formStatus === 'create'}
+    Add
+  {:else}
+    Edit
+  {/if}
+  a Client
+</h2>
 <form class="grid-col-6 grid gap-x-5" on:submit|preventDefault={handleSubmit}>
   <div class="field col-span-6">
     <label for="name">Client Name</label>

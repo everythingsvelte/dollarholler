@@ -6,13 +6,21 @@
   import Activate from '$lib/components/Icon/View.svelte';
   import Trash from '$lib/components/Icon/View.svelte';
   import Archive from '$lib/components/Icon/View.svelte';
+  import SlidePanel from '$lib/components/SlidePanel.svelte';
   import Tag from '$lib/components/Tag.svelte';
   import { centsToEuros, sumInvoices } from '$lib/utils/moneyHelpers';
+  import ClientForm from './ClientForm.svelte';
 
   export let client: Client;
   console.log({ client });
 
   let isAdditionalMenuShowing = false;
+
+  let isClientFormShowing = false;
+
+  const closePanel = () => {
+    isClientFormShowing = false;
+  };
 
   const receivedInvoices = () => {
     if (client?.invoices) {
@@ -33,6 +41,11 @@
     }
     return 0;
   };
+
+  const handleEdit = () => {
+    isClientFormShowing = true;
+    isAdditionalMenuShowing = false;
+  };
 </script>
 
 <div class="client-table client-row rounded-lg bg-white py-3 shadow-tableRow lg:py-6">
@@ -48,7 +61,7 @@
   </div>
 
   <div class="view relative hidden items-center justify-center lg:flex">
-    <a href="#" class="text-pastelPurple hover:text-daisyBush">
+    <a href={`/clients/${client.id}`} class="text-pastelPurple hover:text-daisyBush">
       <View />
     </a>
   </div>
@@ -65,7 +78,7 @@
     {#if isAdditionalMenuShowing}
       <AdditionalOptions
         options={[
-          { label: 'Edit', icon: Edit, onClick: () => console.log('editing'), disabled: false },
+          { label: 'Edit', icon: Edit, onClick: handleEdit, disabled: false },
           {
             label: 'Activate',
             icon: Activate,
@@ -90,6 +103,11 @@
     {/if}
   </div>
 </div>
+{#if isClientFormShowing}
+  <SlidePanel on:closePanel={closePanel}>
+    <ClientForm {closePanel} formStatus="edit" {client} />
+  </SlidePanel>
+{/if}
 
 <style lang="postcss">
   .client-row {
