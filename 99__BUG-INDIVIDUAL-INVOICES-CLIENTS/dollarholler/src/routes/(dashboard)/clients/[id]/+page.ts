@@ -1,13 +1,14 @@
+import type { PageLoad } from './$types'
+import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { getClientById } from "$lib/stores/ClientStore";
 
-interface Props {
-  params: {
-    id: string;
-  }
-}
+export const load: PageLoad = async (event) => {
+  const { session } = await getSupabase(event)
 
-export async function load({ params }: Props) {
-  const id = params?.id;
-  const client = await getClientById(id);
-  return { client };
+  if (session) {
+    const id = event?.params?.id;
+    const client = await getClientById(id, event);
+    console.log({ client });
+    return { client };
+  }
 }

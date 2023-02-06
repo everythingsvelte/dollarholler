@@ -1,6 +1,8 @@
 import { displayErrorMessage } from "$lib/utils/handleError";
 import supabase from "$lib/utils/supabase";
+import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { writable } from "svelte/store";
+import type { PageLoadEvent } from "../../routes/(dashboard)/clients/[id]/$types";
 import { deleteClientInvoices } from "./InvoiceStore";
 import { snackbar } from "./SnackbarStore";
 
@@ -60,8 +62,10 @@ export const updateClient = async (clientToUpdate: Client) => {
   return clientToUpdate;
 }
 
-export const getClientById = async (id: string) => {
-  const { data, error } = await supabase
+export const getClientById = async (id: string, event: PageLoadEvent) => {
+  const { supabaseClient } = await getSupabase(event)
+
+  const { data, error } = await supabaseClient
     .from('client')
     .select('*, invoice(id, invoiceStatus, invoiceNumber, dueDate, client(id, name), lineItems(*))')
     .eq('id', id);

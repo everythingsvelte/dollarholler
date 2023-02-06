@@ -1,7 +1,9 @@
+import { getSupabase } from '@supabase/auth-helpers-sveltekit'
 import { displayErrorMessage } from "$lib/utils/handleError";
 import supabase from "$lib/utils/supabase";
 import { writable } from "svelte/store";
 import { snackbar } from "./SnackbarStore";
+import type { PageLoadEvent } from '../../routes/(dashboard)/invoices/[id]/$types';
 
 export const invoices = writable<Invoice[]>([]);
 
@@ -167,8 +169,10 @@ export const deleteClientInvoices = async (clientId: string): Promise<boolean> =
   return isSuccessful;
 }
 
-export const getInvoiceById = async (id: string) => {
-  const { data, error } = await supabase
+export const getInvoiceById = async (id: string, event: PageLoadEvent) => {
+  const { supabaseClient } = await getSupabase(event)
+
+  const { data, error } = await supabaseClient
     .from('invoice')
     .select('*, client(id, name), lineItems(*)')
     .eq('id', id)
