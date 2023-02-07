@@ -44,7 +44,7 @@
     <ul class="list-none text-2xl font-bold">
       <li><a href="/invoices" class:active={$page.url.pathname === '/invoices'}>Invoices</a></li>
       <li><a href="/clients" class:active={$page.url.pathname === '/clients'}>Clients</a></li>
-      <li><a href="#">Settings</a></li>
+      <li><a href="/settings" class:active={$page.url.pathname === '/settings'}>Settings</a></li>
       <li><a href="#">Logout</a></li>
     </ul>
   </nav>

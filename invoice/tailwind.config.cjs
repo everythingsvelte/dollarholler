@@ -11,6 +11,7 @@ module.exports = {
       backgroundImage: {
         arrowRightUp: "url('/images/arrow-right-up.svg')",
         arrowLeftUp: "url('/images/arrow-left-up.svg')",
+        auth: "url('/images/bg-auth.svg')",
         bg404: "url('/images/bg-error.svg')",
         chevronDown: "url('/images/chevron--down.svg')",
         circle: "url('/images/circle.svg')",
