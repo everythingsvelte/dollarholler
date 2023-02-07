@@ -6,12 +6,21 @@
   import { states } from '$lib/utils/states';
   import { settings, loadSettings } from '$lib/stores/SettingsStore';
   import { onMount } from 'svelte';
+  import supabase from '$lib/utils/supabase';
 
   let mySettings: Settings = {} as Settings;
+  let accountEmail = '';
 
-  onMount(() => {
-    loadSettings();
+  onMount(async () => {
+    await loadSettings();
     mySettings = { ...$settings };
+
+    // get logged in user
+
+    const {
+      data: { user }
+    } = await supabase.auth.getUser();
+    accountEmail = user?.email || '';
   });
 </script>
 
@@ -28,6 +37,10 @@
       <div class="field col-span-6">
         <label for="myName">Name</label>
         <input type="text" name="myName" id="myName" bind:value={mySettings.myName} />
+      </div>
+      <div class="field col-span-6">
+        <label for="invoiceEmail">Send Invoices from this Email</label>
+        <input type="email" name="invoiceEmail" id="invoiceEmail" bind:value={mySettings.email} />
       </div>
       <div class="field col-span-6">
         <label for="street">Address</label>
@@ -57,12 +70,12 @@
 
     <div class="col-span-6">
       <h2>Update Account Information</h2>
-      <p class="mb-8">This information is used to access your account.</p>
+      <p class="mb-8">This information is used to login to your account.</p>
     </div>
     <form class="grid grid-cols-6 gap-x-5">
       <div class="field col-span-6 md:col-span-3">
         <label for="email">Email Address</label>
-        <input type="email" name="email" />
+        <input type="email" name="email" bind:value={accountEmail} />
       </div>
 
       <div class="field col-span-6 md:col-span-3">
