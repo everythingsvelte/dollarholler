@@ -4,6 +4,7 @@
   import Arrow from './Icon/Arrow.svelte';
   import Overlay from './Overlay.svelte';
   import Portal from './Portal.svelte';
+  import { clickOutside } from '$lib/actions/ClickOutside';
 
   const dispatch = createEventDispatcher();
 </script>
@@ -23,6 +24,9 @@
     transition:fly={{
       x: 1000,
       duration: 500
+    }}
+    use:clickOutside={() => {
+      dispatch('closePanel');
     }}
   >
     <button

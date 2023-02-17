@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { clickOutside } from '$lib/actions/ClickOutside';
   import AdditionalOptions from '$lib/components/AdditionalOptions.svelte';
   import Edit from '$lib/components/Icon/Edit.svelte';
   import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
@@ -66,7 +67,12 @@
     </a>
   </div>
 
-  <div class="three-dots relative hidden items-center justify-center lg:flex">
+  <div
+    class="relative hidden items-center justify-center lg:flex"
+    use:clickOutside={() => {
+      isAdditionalMenuShowing = false;
+    }}
+  >
     <button
       class="text-pastelPurple hover:text-daisyBush"
       on:click={() => {

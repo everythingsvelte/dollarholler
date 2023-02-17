@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { clickOutside } from '$lib/actions/ClickOutside';
   import Cancel from './../../../lib/components/Icon/Cancel.svelte';
   import AdditionalOptions from '$lib/components/AdditionalOptions.svelte';
   import ThreeDots from '$lib/components/Icon/ThreeDots.svelte';
@@ -13,6 +14,7 @@
   import SlidePanel from '$lib/components/SlidePanel.svelte';
   import InvoiceForm from './InvoiceForm.svelte';
   import ConfirmDelete from './ConfirmDelete.svelte';
+  import { swipe } from '$lib/actions/Swipe';
 
   export let invoice: Invoice;
   let isAdditionalMenuShowing = false;
@@ -53,6 +55,7 @@
 
 <div
   class="invoice-table invoice-row items-center rounded-lg bg-white py-3 shadow-tableRow lg:py-6"
+  use:swipe
 >
   <div class="status"><Tag className="ml-auto lg:ml-0" label={getInvoiceLabel()} /></div>
   <div class="dueDate text-sm lg:text-lg">{convertDate(invoice.dueDate)}</div>
@@ -66,7 +69,12 @@
   <div class="viewButton hidden items-center justify-center  text-sm lg:flex lg:text-lg">
     <a href={`/invoices/${invoice.id}`} class="text-pastelPurple hover:text-daisyBush"><View /></a>
   </div>
-  <div class="moreButton relative hidden items-center justify-center text-sm lg:flex lg:text-lg">
+  <div
+    class="moreButton relative hidden items-center justify-center text-sm lg:flex lg:text-lg"
+    use:clickOutside={() => {
+      isAdditionalMenuShowing = false;
+    }}
+  >
     <button
       class=" text-pastelPurple hover:text-daisyBush"
       on:click={() => {
