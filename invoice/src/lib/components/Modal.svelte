@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { clickOutside } from '$lib/actions/ClickOutside.ts';
+  import { clickOutside } from '$lib/actions/ClickOutside';
   import { createEventDispatcher } from 'svelte';
   import Portal from '$lib/components/Portal.svelte';
   import Cancel from './Icon/Cancel.svelte';
