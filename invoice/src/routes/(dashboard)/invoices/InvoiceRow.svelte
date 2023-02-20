@@ -99,7 +99,7 @@
     </div>
   </div>
   <!-- swipe to reveal -->
-  <div class="absolute inset-0 z-rowActions flex h-full w-full items-center justify-around">
+  <div class="swipe-revealed-actions">
     <button
       class="action-button"
       on:click={() => {

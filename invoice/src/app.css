@@ -50,6 +50,12 @@
 }
 
 @layer components {
+  .action-button {
+    @apply flex cursor-pointer flex-col items-center justify-center font-bold text-daisyBush;
+  }
+  .swipe-revealed-actions {
+    @apply absolute inset-0 z-rowActions flex h-full w-full items-center justify-around;
+  }
   .invoice-table {
     @apply mb-3 grid w-full grid-cols-invoiceTableMobile gap-x-4 px-4 lg:grid-cols-invoiceTable lg:px-6;
   }
