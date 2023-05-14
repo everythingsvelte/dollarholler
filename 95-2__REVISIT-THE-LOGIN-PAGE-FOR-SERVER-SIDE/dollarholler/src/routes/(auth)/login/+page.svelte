@@ -1,35 +1,16 @@
 <script lang="ts">
   import Alert from '$lib/components/Alert.svelte';
   import Loader from '$lib/components/Loader.svelte';
-  import supabase from '$lib/utils/supabase';
-  import { goto } from '$app/navigation';
 
-  let email: string,
-    password: string,
-    message = '',
-    isLoading = false;
-
-  const handleSubmit = async () => {
-    isLoading = true;
-    message = '';
-    let { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      message = error.message;
-      console.error(error);
-    } else {
-      goto('/invoices');
-    }
-
-    isLoading = false;
-  };
+  export let form;
+  let email: string = form?.values.email || '';
 </script>
 
 <h1 class="auth-heading">Login</h1>
 
-<form on:submit|preventDefault={handleSubmit}>
-  <Alert {message} />
-  <fieldset disabled={isLoading}>
+<form method="POST">
+  <Alert message={form?.error} />
+  <fieldset>
     <div class="field">
       <label for="email" class="text-goldenFizz">Email Address</label>
       <input type="email" name="email" placeholder="Your Email" bind:value={email} />
@@ -41,15 +22,11 @@
           >Forgot?</a
         >
       </div>
-      <input type="password" placeholder="Your password" bind:value={password} />
+      <input type="password" name="password" placeholder="Your password" />
     </div>
     <div class="field">
       <button type="submit" class="auth-button flex items-center justify-center gap-x-2">
-        {#if isLoading}
-          <Loader /> Loading
-        {:else}
-          Let's do this!
-        {/if}
+        Let's do this!
       </button>
       <p class="mt-4 text-center text-sm text-white">
         <a href="/signup" class="hover-no-underline underline">Don't have an account yet?</a>
