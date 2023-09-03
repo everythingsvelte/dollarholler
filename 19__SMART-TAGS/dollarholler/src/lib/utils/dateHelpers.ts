@@ -1,15 +1,15 @@
 import { isBefore } from 'date-fns';
 
 /**
- * This takes yyyy-mm-dd and returns m-d-yyyy
+ * This takes yyyy-mm-dd and returns m / d / yyyy
  * @param {string} myDate
- * @returns {string} m-d-yyyy
+ * @returns {string} m / d / yyyy
  */
 export const convertDate = (myDate: string): string => {
   // break apart the date
   const [year, month, date] = splitDate(myDate);
   // return it in the correct format
-  return `${parseInt(month)} /  ${parseInt(date)} / ${year}`
+  return `${parseInt(month)} / ${parseInt(date)} / ${year}`
 }
 
 /**
